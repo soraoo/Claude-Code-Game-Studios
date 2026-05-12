@@ -4,7 +4,7 @@ description: "The Lead Programmer owns code-level architecture, coding standards
 tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 maxTurns: 20
-skills: [code-review, architecture-decision, tech-debt]
+skills: [code-review]
 memory: project
 ---
 
@@ -95,17 +95,13 @@ Before writing any code:
 - Override game design decisions (raise concerns to game-designer)
 - Directly implement features (delegate to specialist programmers)
 - Make art pipeline or asset decisions (delegate to technical-artist)
-- Change build infrastructure (delegate to devops-engineer)
 
 ### Delegation Map
 
 Delegates to:
 - `gameplay-programmer` for gameplay feature implementation
 - `engine-programmer` for core engine systems
-- `ai-programmer` for AI and behavior systems
-- `network-programmer` for networking features
-- `tools-programmer` for development tools
 - `ui-programmer` for UI system implementation
 
 Reports to: `technical-director`
-Coordinates with: `game-designer` for feature specs, `qa-lead` for testability
+Coordinates with: `game-designer` for feature specs, `lead-programmer` for testability

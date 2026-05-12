@@ -4,7 +4,7 @@ description: "Generate a QA test plan for a sprint or feature. Reads GDDs and st
 argument-hint: "[sprint | feature: system-name | story: path]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, AskUserQuestion
-agent: qa-lead
+agent: qa-tester
 ---
 
 # QA Plan
@@ -158,7 +158,7 @@ criteria directly. Review the GDD Formulas section before writing tests.*
 ### [Story Title] — [Type]
 **Verification method**: [Screenshot + designer sign-off | Playtest session |
 Manual step-through | Comparison against reference footage]
-**Who must sign off**: [designer / lead-programmer / qa-lead / art-lead]
+**Who must sign off**: [designer / lead-programmer / qa-tester / art-lead]
 **Evidence to capture**: [screenshot of X | video clip of Y | written playtest
 notes | side-by-side comparison]
 
@@ -196,7 +196,7 @@ list when running that skill.*
 
 **Sign-off requirement**: Playtest notes must be written to
 `production/session-logs/playtest-[sprint]-[story-slug].md` and reviewed by
-the [designer / qa-lead] before the story can be marked COMPLETE.
+the [designer / qa-tester] before the story can be marked COMPLETE.
 
 If no stories require playtest validation: *No playtest sessions required for
 this sprint.*
@@ -213,7 +213,7 @@ A story is DONE when ALL of the following are true:
 - [ ] Manual evidence document exists for all Visual/Feel and UI stories
 - [ ] Smoke check passes (run `/smoke-check sprint` before QA hand-off)
 - [ ] No regressions introduced
-- [ ] Code reviewed (via `/code-review` or documented peer review)
+- [ ] Code reviewed (via documented peer review)
 - [ ] Story file updated to `Status: Complete` (via `/story-done`)
 ````
 

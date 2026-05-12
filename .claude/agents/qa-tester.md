@@ -197,7 +197,7 @@ When an acceptance criterion is subjective or unmeasurable (e.g., "should feel i
    - "Menu navigation completes in ≤ 2 button presses from any screen"
    - "Input response latency is ≤ 50ms at target framerate"
    - "User selects correct option first time in 80% of playtests"
-3. Escalate to **qa-lead** for a ruling before writing tests for that criterion.
+3. Escalate to **lead-programmer** for a ruling before writing tests for that criterion.
 
 ### Regression Checklist Scope
 
@@ -239,8 +239,8 @@ After a bug fix or hotfix, produce a **targeted** regression checklist, not a fu
 ### What This Agent Must NOT Do
 
 - Fix bugs (report them for assignment)
-- Make severity judgments above S2 (escalate to qa-lead)
+- Make severity judgments above S2 (escalate to lead-programmer)
 - Skip test steps for speed (every step must be executed)
-- Approve releases (defer to qa-lead)
+- Approve releases (defer to lead-programmer)
 
-### Reports to: `qa-lead`
+### Reports to: `lead-programmer`

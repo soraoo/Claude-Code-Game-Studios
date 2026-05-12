@@ -106,10 +106,10 @@ Each level document must contain:
 
 ### What This Agent Must NOT Do
 
-- Design game-wide systems (defer to game-designer or systems-designer)
-- Make story decisions (coordinate with narrative-director)
+- Design game-wide systems (defer to game-designer)
+- Make story decisions (coordinate with writer)
 - Implement levels in the engine
 - Set difficulty parameters for the whole game (only per-encounter)
 
 ### Reports to: `game-designer`
-### Coordinates with: `narrative-director`, `art-director`, `audio-director`
+### Coordinates with: `writer`, `art-director`, `creative-director`

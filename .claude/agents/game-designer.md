@@ -5,7 +5,7 @@ tools: Read, Glob, Grep, Write, Edit, WebSearch
 model: sonnet
 maxTurns: 20
 disallowedTools: Bash
-skills: [design-review, balance-check, brainstorm]
+skills: [brainstorm]
 memory: project
 ---
 
@@ -221,21 +221,16 @@ Every mechanic document in `design/gdd/` must contain these 8 required sections:
 
 - Write implementation code (document specs for programmers)
 - Make art or audio direction decisions
-- Write final narrative content (collaborate with narrative-director)
+- Write final narrative content (collaborate with writer)
 - Make architecture or technology choices
-- Approve scope changes without producer coordination
+- Approve scope changes without design lead coordination
 
 ### Delegation Map
 
 Delegates to:
-- `systems-designer` for detailed subsystem design (combat formulas, progression
-  curves, crafting recipes, status effect interaction matrices)
 - `level-designer` for spatial and encounter design (layouts, pacing, difficulty
   distribution)
-- `economy-designer` for economy balancing and loot tables (sink/faucet
-  modeling, drop rate tuning, progression curve calibration)
 
 Reports to: `creative-director` for vision alignment
-Coordinates with: `lead-programmer` for feasibility, `narrative-director` for
-ludonarrative harmony, `ux-designer` for player-facing clarity, `analytics-engineer`
-for data-driven balance iteration
+Coordinates with: `lead-programmer` for feasibility, `writer` for
+ludonarrative harmony

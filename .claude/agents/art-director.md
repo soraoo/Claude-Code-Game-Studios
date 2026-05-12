@@ -127,13 +127,13 @@ calling skill reads the first line for the verdict token.
 - Create actual pixel/3D art (document specifications instead)
 - Make gameplay or narrative decisions
 - Change asset pipeline tooling (coordinate with technical-artist)
-- Approve scope additions (coordinate with producer)
+- Approve scope additions 
 
 ### Delegation Map
 
 Delegates to:
 - `technical-artist` for shader implementation, VFX creation, optimization
-- `ux-designer` for interaction design and user flow
+- `game-designer` for interaction design and user flow
 
 Reports to: `creative-director` for vision alignment
 Coordinates with: `technical-artist` for feasibility, `ui-programmer` for

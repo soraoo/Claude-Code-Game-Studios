@@ -130,7 +130,7 @@ Update the top-level `**Status**: Open` field to `**Status**: Closed`.
 
 Ask: "May I update `production/qa/bugs/[BUG-ID].md` to mark it Closed?"
 
-After closing, check `production/qa/bug-triage-*.md` — if the bug appears in an open triage report, note: "Bug [ID] is referenced in the triage report. Run `/bug-triage` to refresh the open bug count."
+After closing, check `production/qa/bug-triage-*.md` — if the bug appears in an open triage report, note: "Bug [ID] is referenced in the triage report. Run  to refresh the open bug count."
 
 ---
 
@@ -151,7 +151,7 @@ If no, stop here. Verdict: **BLOCKED** — user declined write.
 After saving, suggest based on mode:
 
 **After filing (Description/Analyze mode):**
-- Run `/bug-triage` to prioritize alongside existing open bugs
+- Run  to prioritize alongside existing open bugs
 - If S1 or S2: run `/hotfix [BUG-ID]` for emergency fix workflow
 
 **After fixing the bug (developer confirms fix is in):**
@@ -160,4 +160,4 @@ After saving, suggest based on mode:
 
 **After verify returns VERIFIED FIXED:**
 - Run `/bug-report close [BUG-ID]` — write the closure record and update status
-- Run `/bug-triage` to refresh the open bug count and remove it from the active list
+- Run  to refresh the open bug count and remove it from the active list

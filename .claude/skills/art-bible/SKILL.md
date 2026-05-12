@@ -13,7 +13,7 @@ Resolve the review mode (once, store for all gate spawns this run):
 2. Else read `production/review-mode.txt` → use that value
 3. Else → default to `lean`
 
-See `.claude/docs/director-gates.md` for the full check pattern.
+
 
 Read `design/gdd/game-concept.md`. If it does not exist, fail with:
 > "No game concept found. Run `/brainstorm` first — the art bible is authored after the game concept is approved."
@@ -156,9 +156,7 @@ Write the approved section to file.
 
 **Agent delegation**: Spawn in parallel:
 - **`art-director`**: Visual style for UI — diegetic vs. screen-space HUD, typography direction (font personality, weight, size hierarchy), iconography style (flat/outlined/illustrated/photorealistic), animation feel for UI elements
-- **`ux-designer`**: UX alignment check — does the visual direction support the interaction patterns this game requires? Flag any conflicts between art direction and readability/accessibility needs.
 
-Collect both. If they conflict (e.g., art-director wants elaborate diegetic UI but ux-designer flags it would reduce combat readability), surface the conflict explicitly with both positions. Do NOT silently resolve — use `AskUserQuestion` to let the user decide.
 
 Write the approved section to file.
 
@@ -191,11 +189,11 @@ Write the approved section to file.
 - `lean` → skip (not a PHASE-GATE). Note: "AD-ART-BIBLE skipped — Lean mode." Proceed to Phase 6.
 - `full` → spawn as normal.
 
-After all sections are complete (or the scoped set from Phase 1 is complete), spawn `creative-director` via Task using gate **AD-ART-BIBLE** (`.claude/docs/director-gates.md`).
+After all sections are complete (or the scoped set from Phase 1 is complete), spawn `creative-director` via Task using gate **AD-ART-BIBLE** .
 
 Pass: art bible file path, game pillars, visual identity anchor.
 
-Handle verdict per standard rules in `director-gates.md`. Record the verdict in the art bible's status header:
+Record the verdict in the art bible's status header:
 `> **Art Director Sign-Off (AD-ART-BIBLE)**: APPROVED [date] / CONCERNS (accepted) [date] / REVISED [date]`
 
 ---
@@ -223,7 +221,7 @@ Use `AskUserQuestion` for next steps. Only include options that are genuinely ne
 
 Assign letters A, B, C… only to the options actually included. Mark the most logical pipeline-advancing option as `(recommended)`.
 
-> **Always include** `/create-architecture` and Stop here as options — these are always valid next steps once the art bible is complete.
+> **Always include**  and Stop here as options — these are always valid next steps once the art bible is complete.
 
 ---
 
@@ -241,8 +239,8 @@ Every section follows: **Question → Options → Decision → Draft (from art-d
 ## Recommended Next Steps
 
 After the art bible is approved:
-- Run `/map-systems` to decompose the concept into game systems before authoring GDDs
+- Run `/brainstorm` to decompose the concept into game systems before authoring GDDs
 - Run `/setup-engine` if the engine is not yet configured (asset standards may need revisiting after engine selection)
 - Run `/design-system [first-system]` to start authoring per-system GDDs
-- Run `/consistency-check` once GDDs exist to validate them against the art bible's visual rules
-- Run `/create-architecture` to produce the master architecture document
+- Run  once GDDs exist to validate them against the art bible's visual rules
+- Run  to produce the master architecture document

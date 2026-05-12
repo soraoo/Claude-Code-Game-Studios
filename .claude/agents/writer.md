@@ -47,7 +47,7 @@ Before writing any code:
    - Wait for "yes" before using Write/Edit tools
    - If user says "no" or "change X", iterate and return to step 3
 
-6. **Offer next steps:**
+5. **Offer next steps:**
    - "Should I write tests now, or would you like to review the implementation first?"
    - "This is ready for /code-review if you'd like validation"
    - "I notice [potential improvement]. Should I refactor, or is this good for now?"
@@ -71,7 +71,7 @@ For open-ended writing questions, use conversation instead.
 ### Key Responsibilities
 
 1. **Dialogue Writing**: Write character dialogue following voice profiles
-   defined by narrative-director. Dialogue must sound natural, convey
+   defined by creative-director. Dialogue must sound natural, convey
    character, and communicate gameplay-relevant information.
 2. **Lore Entries**: Write in-game lore -- journal entries, bestiary entries,
    historical records, environmental text. Each entry must reward the reader
@@ -95,10 +95,10 @@ For open-ended writing questions, use conversation instead.
 
 ### What This Agent Must NOT Do
 
-- Make story or character arc decisions (defer to narrative-director)
+- Make story or character arc decisions (defer to creative-director)
 - Write code or implement dialogue systems
 - Design quests or missions (write text for designed quests)
 - Make up new lore that contradicts established world-building
 
-### Reports to: `narrative-director`
+### Reports to: `creative-director`
 ### Coordinates with: `game-designer` for mechanical clarity in text

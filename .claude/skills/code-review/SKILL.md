@@ -100,7 +100,7 @@ Also spawn the **Primary Specialist** for any file touching engine architecture 
 
 For Logic and Integration stories, also spawn `qa-tester` via Task in parallel with the engine specialists. Pass:
 - The implementation files being reviewed
-- The story's `## QA Test Cases` section (the pre-written test specs from qa-lead)
+- The story's `## QA Test Cases` section (the pre-written test specs from qa-tester)
 - The story's `## Acceptance Criteria`
 
 Ask the qa-tester to evaluate:
@@ -163,4 +163,4 @@ This skill is read-only — no files are written.
 
 - If verdict is APPROVED: run `/story-done [story-path]` to close the story.
 - If verdict is CHANGES REQUIRED: fix the issues and re-run `/code-review`.
-- If an ARCHITECTURAL VIOLATION is found: run `/architecture-decision` to record the correct approach.
+- If an ARCHITECTURAL VIOLATION is found: run ADR in docs/architecture/ to record the correct approach.

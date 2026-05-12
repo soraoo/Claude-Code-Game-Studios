@@ -90,7 +90,7 @@ Before writing any code:
 If an ADR exists for this system:
 - Follow its Implementation Guidelines exactly
 - If the ADR's guidelines conflict with what seems better, flag the discrepancy rather than silently deviating: "The ADR says X, but I think Y would be better — proceed with ADR or flag for architecture review?"
-- If no ADR exists for a new system, surface this: "No ADR found for [system]. Consider running /architecture-decision first."
+- If no ADR exists for a new system, surface this: "No ADR found for [system]. Consider writing an ADR first."
 
 ### Code Standards
 
@@ -106,14 +106,13 @@ If an ADR exists for this system:
 - Change game design (raise discrepancies with game-designer)
 - Modify engine-level systems without lead-programmer approval
 - Hardcode values that should be configurable
-- Write networking code (delegate to network-programmer)
 - Skip unit tests for gameplay logic
 
 ### Delegation Map
 
 **Reports to**: `lead-programmer`
 
-**Implements specs from**: `game-designer`, `systems-designer`
+**Implements specs from**: `game-designer`
 
 **Escalation targets**:
 
@@ -123,8 +122,6 @@ If an ADR exists for this system:
 
 **Sibling coordination**:
 
-- `ai-programmer` for AI/gameplay integration (enemy behavior, NPC reactions)
-- `network-programmer` for multiplayer gameplay features (shared state, prediction)
 - `ui-programmer` for gameplay-to-UI event contracts (health bars, score displays)
 - `engine-programmer` for engine API usage and performance-critical gameplay code
 

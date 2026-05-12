@@ -16,7 +16,7 @@ features too small to warrant a full document.
 
 **Output:** `design/quick-specs/[name]-[date].md`
 
-**When to run:** Anytime a change is too small for `/design-system` but too
+**When to run:** Anytime a change is too small f but too
 meaningful to implement without a written rationale.
 
 ---
@@ -242,7 +242,7 @@ Type: [Tuning / Tweak / Addition / New Small System]
 System: [system name]
 GDD update: [Required — pending approval / Applied / Not required]
 
-Next step: This spec is ready for `/story-readiness` validation before
+Next step: This spec is ready f validation before
 implementation. Reference this spec in the story's GDD Reference field.
 ```
 
@@ -250,7 +250,7 @@ implementation. Reference this spec in the story's GDD Reference field.
 
 Verdict: **COMPLETE** — quick design spec written and ready for implementation.
 
-Quick Design Specs **bypass** `/design-review` and `/review-all-gdds` by
+Quick Design Specs **bypass** `/code-review` and cross-GDD consistency check by
 design. They are for small, low-risk, well-scoped changes where the cost of
 the full review pipeline exceeds the risk of the change itself.
 

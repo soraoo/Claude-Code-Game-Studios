@@ -15,7 +15,7 @@ Resolve the review mode (once, store for all gate spawns this run):
 2. Else read `production/review-mode.txt` → use that value
 3. Else → default to `lean`
 
-See `.claude/docs/director-gates.md` for the full check pattern.
+
 
 A system name or retrofit path is **required**. If missing:
 
@@ -27,7 +27,7 @@ A system name or retrofit path is **required**. If missing:
 3. If no systems index exists, fail with:
    > "Usage: `/design-system <system-name>` — e.g., `/design-system movement`
    > Or to fill gaps in an existing GDD: `/design-system retrofit design/gdd/[system-name].md`
-   > No systems index found. Run `/map-systems` first to map your systems and get the design order."
+   > No systems index found. Run `/brainstorm` first to map your systems and get the design order."
 
 **Detect retrofit mode:**
 If the argument starts with `retrofit` or the argument is a file path to an
@@ -75,7 +75,7 @@ primary advantage over ad-hoc design — it arrives informed.
 - **Game concept**: Read `design/gdd/game-concept.md` — fail if missing:
   > "No game concept found. Run `/brainstorm` first."
 - **Systems index**: Read `design/gdd/systems-index.md` — fail if missing:
-  > "No systems index found. Run `/map-systems` first to map your systems."
+  > "No systems index found. Run `/brainstorm` first to map your systems."
 - **Target system**: Find the system in the index. If not listed, warn:
   > "[system-name] is not in the systems index. Would you like to add it, or
   > design it as an off-index system?"
@@ -389,7 +389,7 @@ describes it. Flag discrepancies.
 level — what the system *does*, not *how it is built*. If implementation questions
 arise during the Overview (e.g., "Should this use an Autoload singleton or a signal
 bus?"), note them as "→ becomes an ADR" and move on. Implementation patterns belong
-in `/architecture-decision`, not the GDD. The GDD describes behavior; the ADR
+in ADR in docs/architecture/, not the GDD. The GDD describes behavior; the ADR
 describes the technical approach used to achieve it.
 
 ---
@@ -457,7 +457,7 @@ This is usually the largest section. Break it into sub-sections:
 - Surface any disagreements between agents to the user via `AskUserQuestion`
 - Draft only after receiving specialist input
 
-**Do NOT draft Section C without first consulting the appropriate specialists.** A `systems-designer` reviewing rules and mechanics will catch design gaps the main session cannot.
+**Do NOT draft Section C without first consulting the appropriate specialists.** A `game-designer` reviewing rules and mechanics will catch design gaps the main session cannot.
 
 **Cross-reference**: For each interaction listed, verify it matches what the
 dependency GDD specifies. If a dependency defines a value or formula and this
@@ -495,8 +495,8 @@ table. A formula without defined variables cannot be implemented without guesswo
 - What should the output ranges be at early/mid/late game?
 
 **Agent delegation (MANDATORY)**: Before proposing any formulas or balance values, spawn specialist agents via Task in parallel:
-- **Always spawn `systems-designer`**: provide Core Rules from Section C, tuning goals from user, balance context from dependency GDDs. Ask them to propose formulas with variable tables and output ranges.
-- **For economy/cost systems, also spawn `economy-designer`**: provide placement costs, upgrade cost intent, and progression goals. Ask them to validate cost curves and ratios.
+Systems designer spawn skipped in indie mode — game-designer handles this.
+Economy designer spawn skipped in indie mode.
 - Present the specialists' proposals to the user for review via `AskUserQuestion`
 - The user decides; the main session writes to file
 - **Do NOT invent formula values or balance numbers without specialist input.** A user without balance design expertise cannot evaluate raw numbers — they need the specialists' reasoning.
@@ -526,7 +526,7 @@ design question, not a specification.
 - What happens when two rules apply at the same time?
 - What happens if a player finds an unintended interaction? (Identify degenerate strategies)
 
-**Agent delegation (MANDATORY)**: Spawn `systems-designer` via Task before finalising edge cases. Provide: the completed Sections C and D, and ask them to identify edge cases from the formula and rule space that the main session may have missed. For narrative systems, also spawn `narrative-director`. Present their findings and ask the user which to include.
+Agent delegation skipped in indie mode — review edge cases directly with the user.
 
 **Cross-reference**: Check edge cases against dependency GDDs. If a dependency
 defines a floor, cap, or resolution rule that this system could violate, flag it.
@@ -559,7 +559,7 @@ system]". Flag any one-directional dependencies for correction.
 - For each knob, what breaks if it's set too high? Too low?
 - Which knobs interact with each other? (Changing A makes B irrelevant)
 
-**Agent delegation**: If formulas are complex, delegate to `systems-designer`
+**Agent delegation**: If formulas are complex, delegate to `game-designer`
 to derive tuning knobs from the formula variables.
 
 **Cross-reference**: If a dependency GDD lists tuning knobs that affect this system,
@@ -582,7 +582,7 @@ Include at least: one criterion per core rule from Section C, and one per formul
 from Section D. Do NOT write "the system works as designed" — every criterion must
 be independently verifiable by a QA tester without reading the GDD.
 
-**Agent delegation (MANDATORY)**: Spawn `qa-lead` via Task before finalising acceptance criteria. Provide: the completed GDD sections C, D, E, and ask them to validate that the criteria are independently testable and cover all core rules and formulas. Surface any gaps or untestable criteria to the user.
+**Agent delegation (MANDATORY)**: Spawn `qa-tester` via Task before finalising acceptance criteria. Provide: the completed GDD sections C, D, E, and ask them to validate that the criteria are independently testable and cover all core rules and formulas. Surface any gaps or untestable criteria to the user.
 
 **Questions to ask**:
 - What's the minimum set of tests that prove this works?
@@ -616,18 +616,18 @@ Use `AskUserQuestion`:
   requirements, UI requirements, or capture open questions?"
   - Options: "Yes, all three", "Just open questions", "Skip — I'll add these later"
 
-For **Visual/Audio** (non-required systems): Coordinate with `art-director` and `audio-director` if detail is needed. Often a brief note suffices at the GDD stage.
+For **Visual/Audio** (non-required systems): Coordinate with `art-director` and `technical-artist` if detail is needed. Often a brief note suffices at the GDD stage.
 
 > **Asset Spec Flag**: After the Visual/Audio section is written with real content, output this notice:
 > "📌 **Asset Spec** — Visual/Audio requirements are defined. After the art bible is approved, run `/asset-spec system:[system-name]` to produce per-asset visual descriptions, dimensions, and generation prompts from this section."
 
-For **UI Requirements**: Coordinate with `ux-designer` for complex UI systems.
+For **UI Requirements**: Coordinate with `ui-programmer` for complex UI systems.
 After writing this section, check whether it contains real content (not just
 `[To be designed]` or a note that this system has no UI). If it does have real
 UI requirements, output this flag immediately:
 
 > **📌 UX Flag — [System Name]**: This system has UI requirements. In Phase 4
-> (Pre-Production), run `/ux-design` to create a UX spec for each screen or
+> (Pre-Production), run  to create a UX spec for each screen or
 > HUD element this system contributes to **before** writing epics. Stories that
 > reference UI should cite `design/ux/[screen].md`, not the GDD directly.
 >
@@ -659,11 +659,11 @@ the source of truth). Verify:
 - `lean` → skip (not a PHASE-GATE). Note: "CD-GDD-ALIGN skipped — Lean mode." Proceed to Step 5b.
 - `full` → spawn as normal.
 
-Before finalizing the GDD, spawn `creative-director` via Task using gate **CD-GDD-ALIGN** (`.claude/docs/director-gates.md`).
+Before finalizing the GDD, Review for creative alignment. Flag issues for the user. .
 
 Pass: completed GDD file path, game pillars (from `design/gdd/game-concept.md` or `design/gdd/game-pillars.md`), MDA aesthetics target.
 
-Handle verdict per the standard rules in `director-gates.md`. After resolution, record the verdict in the GDD Status header:
+After resolution, record the verdict in the GDD Status header:
 `> **Creative Director Review (CD-GDD-ALIGN)**: APPROVED [date] / CONCERNS (accepted) [date] / REVISED [date]`
 
 ---
@@ -708,13 +708,13 @@ Present a completion summary:
 > - Cross-system conflicts found: [list or "none"]
 
 > **To validate this GDD, open a fresh Claude Code session and run:**
-> `/design-review design/gdd/[system-name].md`
+> GDD review
 >
-> **Never run `/design-review` in the same session as `/design-system`.** The reviewing
+> **Never run `/code-review` in the same session as `/design-system`.** The reviewing
 > agent must be independent of the authoring context. Running it here would inherit
 > the full design history, making independent critique impossible.
 
-**NEVER offer to run `/design-review` inline.** Always direct the user to a fresh window.
+**NEVER offer to run `/code-review` inline.** Always direct the user to a fresh window.
 
 ### 5d: Update Systems Index
 
@@ -745,7 +745,7 @@ Update `production/session-state/active.md` with:
 Use `AskUserQuestion`:
 - "What's next?"
   - Options:
-    - "Run `/consistency-check` — verify this GDD's values don't conflict with existing GDDs (recommended before designing the next system)"
+    - "Run  — verify this GDD's values don't conflict with existing GDDs (recommended before designing the next system)"
     - "Design next system ([next-in-order])" — if undesigned systems remain
     - "Fix review findings" — if design-review flagged issues
     - "Stop here for this session"
@@ -760,19 +760,19 @@ orchestrates the overall flow; agents provide expert content.
 
 | System Category | Primary Agent | Supporting Agent(s) |
 |----------------|---------------|---------------------|
-| **Foundation/Infrastructure** (event bus, save/load, scene mgmt, service locator) | `systems-designer` | `gameplay-programmer` (feasibility), `engine-programmer` (engine integration) |
-| Combat, damage, health | `game-designer` | `systems-designer` (formulas), `ai-programmer` (enemy AI), `art-director` (hit feedback visual direction, VFX intent) |
-| Economy, loot, crafting | `economy-designer` | `systems-designer` (curves), `game-designer` (loops) |
-| Progression, XP, skills | `game-designer` | `systems-designer` (curves), `economy-designer` (sinks) |
-| Dialogue, quests, lore | `game-designer` | `narrative-director` (story), `writer` (content), `art-director` (character visual profiles, cinematic tone) |
-| UI systems (HUD, menus) | `game-designer` | `ux-designer` (flows), `ui-programmer` (feasibility), `art-director` (visual style direction), `technical-artist` (render/shader constraints) |
-| Audio systems | `game-designer` | `audio-director` (direction), `sound-designer` (specs) |
-| AI, pathfinding, behavior | `game-designer` | `ai-programmer` (implementation), `systems-designer` (scoring) |
-| Level/world systems | `game-designer` | `level-designer` (spatial), `world-builder` (lore) |
-| Camera, input, controls | `game-designer` | `ux-designer` (feel), `gameplay-programmer` (feasibility) |
+| Foundation/Infrastructure (event bus, save/load, scene mgmt, service locator) | `game-designer` | `gameplay-programmer` (feasibility), `engine-programmer` (engine integration) |
+| Combat, damage, health | `game-designer` | `gameplay-programmer` (implementation), `art-director` (hit feedback visual direction, VFX intent) |
+| Economy, loot, crafting | `game-designer` | `technical-director` (balance validation) |
+| Progression, XP, skills | `game-designer` | `technical-director` (curve validation) |
+| Dialogue, quests, lore | `game-designer` | `writer` (content), `art-director` (character visual profiles, cinematic tone) |
+| UI systems (HUD, menus) | `game-designer` | `ui-programmer` (feasibility), `art-director` (visual style direction), `technical-artist` (render/shader constraints) |
+| Audio systems | `game-designer` | `technical-artist` (audio implementation) |
+| AI, pathfinding, behavior | `game-designer` | `gameplay-programmer` (implementation) |
+| Level/world systems | `game-designer` | `level-designer` (spatial) |
+| Camera, input, controls | `game-designer` | `gameplay-programmer` (feasibility) |
 | Animation, character movement | `game-designer` | `art-director` (animation style, pose language), `technical-artist` (rig/blend constraints), `gameplay-programmer` (feel) |
-| Visual effects, particles, shaders | `game-designer` | `art-director` (VFX visual direction), `technical-artist` (performance budget, shader complexity), `systems-designer` (trigger/state integration) |
-| Character systems (stats, archetypes) | `game-designer` | `art-director` (character visual archetype), `narrative-director` (character arc alignment), `systems-designer` (stat formulas) |
+| Visual effects, particles, shaders | `game-designer` | `art-director` (VFX visual direction), `technical-artist` (performance budget, shader complexity) |
+| Character systems (stats, archetypes) | `game-designer` | `art-director` (character visual archetype) |
 
 **When delegating via Task tool**:
 - Provide: system name, game concept summary, dependency GDD excerpts, the specific
@@ -835,7 +835,7 @@ shows context at or above 70%. If so, append this notice to the response:
 
 ## Recommended Next Steps
 
-- Run `/design-review design/gdd/[system-name].md` in a **fresh session** to validate the completed GDD independently
-- Run `/consistency-check` to verify this GDD's values don't conflict with other GDDs
-- Run `/map-systems next` to move to the next highest-priority undesigned system
+- Run GDD review in a **fresh session** to validate the completed GDD independently
+- Run  to verify this GDD's values don't conflict with other GDDs
+- Proceed to the next system to move to the next highest-priority undesigned system
 - Run `/gate-check pre-production` when all MVP GDDs are authored and reviewed

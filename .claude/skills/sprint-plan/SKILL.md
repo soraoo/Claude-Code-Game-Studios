@@ -15,7 +15,7 @@ Extract the mode argument (`new`, `update`, or `status`) and resolve the review 
 2. Else read `production/review-mode.txt` → use that value
 3. Else → default to `lean`
 
-See `.claude/docs/director-gates.md` for the full check pattern.
+
 
 ---
 
@@ -37,7 +37,7 @@ See `.claude/docs/director-gates.md` for the full check pattern.
 
 For `new`:
 
-**Generate a sprint plan** following this format and present it to the user. Do NOT ask to write yet — the producer feasibility gate (Phase 4) runs first and may require revisions before the file is written.
+**Generate a sprint plan** following this format and present it to the user. Do NOT ask to write yet — the feasibility check (Phase 4) runs first and may require revisions before the file is written.
 
 ```markdown
 # Sprint [N] -- [Start Date] to [End Date]
@@ -81,7 +81,7 @@ For `new`:
 - [ ] QA plan exists (`production/qa/qa-plan-sprint-[N].md`)
 - [ ] All Logic/Integration stories have passing unit/integration tests
 - [ ] Smoke check passed (`/smoke-check sprint`)
-- [ ] QA sign-off report: APPROVED or APPROVED WITH CONDITIONS (`/team-qa sprint`)
+- [ ] QA sign-off report: APPROVED or APPROVED WITH CONDITIONS (`/qa-plan`)
 - [ ] No S1 or S2 bugs in delivered features
 - [ ] Design documents updated for any deviations
 - [ ] Code reviewed and merged
@@ -126,7 +126,7 @@ For `status`:
 
 After generating a new sprint plan, also write `production/sprint-status.yaml`.
 This is the machine-readable source of truth for story status — read by
-`/sprint-status`, `/story-done`, and `/help` without markdown parsing.
+ without markdown parsing.
 
 Ask: "May I also write `production/sprint-status.yaml` to track story status?"
 
@@ -172,13 +172,13 @@ stories that haven't changed, add new stories, remove dropped ones.
 - `lean` → skip (not a PHASE-GATE). Note: "PR-SPRINT skipped — Lean mode." Proceed to Phase 5 (QA plan gate).
 - `full` → spawn as normal.
 
-Before finalising the sprint plan, spawn `producer` via Task using gate **PR-SPRINT** (`.claude/docs/director-gates.md`).
+Before finalising the sprint plan, Review for production feasibility. Flag issues for the user. .
 
 Pass: proposed story list (titles, estimates, dependencies), total team capacity in hours/days, any carryover from the previous sprint, milestone constraints and deadline.
 
-Present the producer's assessment. If UNREALISTIC, revise the story selection (defer stories to Should Have or Nice to Have) before asking for write approval. If CONCERNS, surface them and let the user decide whether to adjust.
+Present the feasibility assessment. If UNREALISTIC, revise the story selection (defer stories to Should Have or Nice to Have) before asking for write approval. If CONCERNS, surface them and let the user decide whether to adjust.
 
-After handling the producer's verdict, ask: "May I write this sprint plan to `production/sprints/sprint-[N].md`?" If yes, write the file, creating the directory if needed. Verdict: **COMPLETE** — sprint plan created. If no: Verdict: **BLOCKED** — user declined write.
+After handling the feasibility verdict, ask: "May I write this sprint plan to `production/sprints/sprint-[N].md`?" If yes, write the file, creating the directory if needed. Verdict: **COMPLETE** — sprint plan created. If no: Verdict: **BLOCKED** — user declined write.
 
 After writing, add:
 
@@ -224,5 +224,5 @@ After the sprint plan is written and QA plan status is resolved:
 - `/qa-plan sprint` — **required before implementation begins** — defines test cases per story so developers implement against QA specs, not a blank slate
 - `/story-readiness [story-file]` — validate a story is ready before starting it
 - `/dev-story [story-file]` — begin implementing the first story
-- `/sprint-status` — check progress mid-sprint
+- `/sprint-plan` — check progress mid-sprint
 - `/scope-check [epic]` — verify no scope creep before implementation begins

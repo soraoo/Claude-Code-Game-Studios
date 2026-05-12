@@ -25,7 +25,7 @@ Resolve the review mode (once, store for all gate spawns this run):
 2. Else read `production/review-mode.txt` → use that value
 3. Else → default to `lean`
 
-See `.claude/docs/director-gates.md` for the full check pattern.
+
 
 **If a file path is provided** (e.g., `/story-done production/epics/core/story-damage-calculator.md`):
 read that file directly.
@@ -232,7 +232,7 @@ For each deviation found, categorize:
 - `lean` → skip (not a PHASE-GATE). Note: "QL-TEST-COVERAGE skipped — Lean mode." Proceed to Phase 5.
 - `full` → spawn as normal.
 
-After completing the deviation checks in Phase 4, spawn `qa-lead` via Task using gate **QL-TEST-COVERAGE** (`.claude/docs/director-gates.md`).
+After completing the deviation checks in Phase 4, Review test coverage and readiness. Flag gaps for the user. .
 
 Pass:
 - The story file path and story type
@@ -240,7 +240,7 @@ Pass:
 - The story's `## QA Test Cases` section (the pre-written test specs from story creation)
 - The story's `## Acceptance Criteria` list
 
-The qa-lead reviews whether the tests actually cover what was specified — not just whether files exist.
+The qa-tester reviews whether the tests actually cover what was specified — not just whether files exist.
 
 Apply the verdict:
 - **ADEQUATE** → proceed to Phase 5
@@ -258,7 +258,7 @@ Skip this phase for Config/Data stories (no code tests required).
 - `lean` → skip (not a PHASE-GATE). Note: "LP-CODE-REVIEW skipped — Lean mode." Proceed to Phase 6 (completion report).
 - `full` → spawn as normal.
 
-Spawn `lead-programmer` via Task using gate **LP-CODE-REVIEW** (`.claude/docs/director-gates.md`).
+Spawn `lead-programmer` via Task using gate **LP-CODE-REVIEW** .
 
 Pass: implementation file paths, story file path, relevant GDD section, governing ADR.
 
@@ -394,10 +394,10 @@ All Must Have stories are complete. QA sign-off is required before advancing.
 Run these in order:
 
 1. `/smoke-check sprint` — verify the critical path still works end-to-end
-2. `/team-qa sprint` — full QA cycle: test case execution, bug triage, sign-off report
+2. `/qa-plan` — full QA cycle: test case execution, bug triage, sign-off report
 3. `/gate-check` — advance to the next phase once QA approves
 
-Do not run `/gate-check` until `/team-qa` returns APPROVED or APPROVED WITH CONDITIONS.
+Do not run `/gate-check` until `/qa-plan` returns APPROVED or APPROVED WITH CONDITIONS.
 ```
 
 If there are Should Have stories still unstarted, surface them alongside the close-out sequence so the user can choose: close the sprint now, or pull in more work first.
@@ -424,5 +424,5 @@ If no more stories are ready but Must Have stories are still In Progress (not Co
 ## Recommended Next Steps
 
 - Run `/story-readiness [next-story-path]` to validate the next story before starting implementation
-- If all Must Have stories are complete: run `/smoke-check sprint` → `/team-qa sprint` → `/gate-check`
-- If tech debt was logged: track it via `/tech-debt` to keep the register current
+- If all Must Have stories are complete: run `/smoke-check sprint` → `/qa-plan` → `/gate-check`
+- If tech debt was logged: track it via  to keep the register current

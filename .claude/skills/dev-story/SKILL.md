@@ -21,7 +21,7 @@ drives implementation to completion — including writing the test.
 /story-done [path]        ← verify and close it
 ```
 
-**After all sprint stories are done:** run `/team-qa sprint` to execute the full QA cycle and get a sign-off verdict before advancing the project stage.
+**After all sprint stories are done:** run `/qa-plan` to execute the full QA cycle and get a sign-off verdict before advancing the project stage.
 
 **Output:** Source code + test file in the project's `src/` and `tests/` directories.
 
@@ -45,8 +45,8 @@ If not found, ask: "Which story are we implementing?" Glob
 | File | Path | If missing |
 |------|------|------------|
 | TR registry | `docs/architecture/tr-registry.yaml` | **STOP** — "TR registry not found. Run `/create-epics` to generate it." |
-| Governing ADR | path from story's ADR field | **STOP** — "ADR file [path] not found. Run `/architecture-decision` to create it, or correct the filename in the story's ADR field." |
-| Control manifest | `docs/architecture/control-manifest.md` | **WARN and continue** — "Control manifest not found — layer rules cannot be checked. Run `/create-control-manifest`." |
+| Governing ADR | path from story's ADR field | **STOP** — "ADR file [path] not found. Run ADR in docs/architecture/ to create it, or correct the filename in the story's ADR field." |
+| Control manifest | `docs/architecture/control-manifest.md` | **WARN and continue** — "Control manifest not found — layer rules cannot be checked. Run ." |
 
 If the TR registry or governing ADR is missing, set the story status to **BLOCKED** in the session state and do not spawn any programmer agent.
 
@@ -140,8 +140,6 @@ If the story's Type is `Config/Data`, no programmer agent or engine specialist i
 | Any layer — Type: UI | `ui-programmer` |
 | Any layer — Type: Visual/Feel | `gameplay-programmer` (implements) |
 | Core or Feature — gameplay mechanics | `gameplay-programmer` |
-| Core or Feature — AI behaviour, pathfinding | `ai-programmer` |
-| Core or Feature — networking, replication | `network-programmer` |
 | Config/Data — no code | No agent needed (see Phase 4 Config note) |
 
 ### Engine specialist — always spawn as secondary for code stories
@@ -153,9 +151,6 @@ engine risk.
 
 | Engine | Specialist agents available |
 |--------|----------------------------|
-| Godot 4 | `godot-specialist`, `godot-gdscript-specialist`, `godot-shader-specialist` |
-| Unity | `unity-specialist`, `unity-ui-specialist`, `unity-shader-specialist` |
-| Unreal Engine | `unreal-specialist`, `ue-gas-specialist`, `ue-blueprint-specialist`, `ue-umg-specialist`, `ue-replication-specialist` |
 
 **When engine risk is HIGH** (from the ADR or VERSION.md): always spawn the engine
 specialist, even for non-engine-facing stories. High risk means the ADR records
@@ -288,7 +283,7 @@ If any spawned agent (via Task) returns BLOCKED, errors, or cannot complete:
 
 Common blockers:
 - Input file missing (story not found, GDD absent) → redirect to the skill that creates it
-- ADR status is Proposed → do not implement; run `/architecture-decision` first
+- ADR status is Proposed → do not implement; run ADR in docs/architecture/ first
 - Scope too large → split into two stories via `/create-stories`
 - Conflicting instructions between ADR and story → surface the conflict, do not guess
 - Manifest version mismatch → show diff to user, ask whether to proceed with old rules or update story first
@@ -320,4 +315,4 @@ Common blockers:
 
 - Run `/code-review [file1] [file2]` to review the implementation before closing the story
 - Run `/story-done [story-path]` to verify acceptance criteria and mark the story complete
-- After all sprint stories are done: run `/team-qa sprint` for the full QA cycle before advancing the project stage
+- After all sprint stories are done: run `/qa-plan` for the full QA cycle before advancing the project stage

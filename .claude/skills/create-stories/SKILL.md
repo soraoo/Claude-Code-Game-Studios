@@ -29,7 +29,7 @@ then Core, and so on — matching the dependency order.
 Extract `--review [full|lean|solo]` if present and store as the review mode
 override for this run. If not provided, read `production/review-mode.txt`
 (default `full` if missing). This resolved mode applies to all gate spawns
-in this skill — apply the check pattern from `.claude/docs/director-gates.md`
+in this skill — apply the check pattern from `(director gates disabled in indie mode)`
 before every gate invocation.
 
 - `/create-stories [epic-slug]` — e.g. `/create-stories combat`
@@ -52,7 +52,7 @@ Read in full:
 **ADR existence validation**: After reading the governing ADRs list from the epic, confirm each ADR file exists on disk. If any ADR file cannot be found, **stop immediately** before decomposing any story:
 
 > "Epic references [ADR-NNNN: title] but `docs/architecture/[adr-file].md` was not found.
-> Check the filename in the epic's Governing ADRs list, or run `/architecture-decision`
+> Check the filename in the epic's Governing ADRs list, or run ADR in docs/architecture/
 > to create it. Cannot create stories until all referenced ADR files are present."
 
 Do not proceed to Step 3 until all referenced ADR files are confirmed present.
@@ -94,7 +94,7 @@ For each story, determine:
 - **TR-ID**: look up in `tr-registry.yaml`. Use the stable ID. If no match, use `TR-[system]-???` and warn.
 - **Governing ADR**: which ADR governs how to implement this?
   - `Status: Accepted` → embed normally
-  - `Status: Proposed` → set story `Status: Blocked` with note: "BLOCKED: ADR-NNNN is Proposed — run `/architecture-decision` to advance it"
+  - `Status: Proposed` → set story `Status: Blocked` with note: "BLOCKED: ADR-NNNN is Proposed — run ADR in docs/architecture/ to advance it"
 - **Story Type**: from Step 3 classification
 - **Engine risk**: from the ADR's Knowledge Risk field
 
@@ -107,13 +107,13 @@ For each story, determine:
 - `lean` → skip (not a PHASE-GATE). Note: "QL-STORY-READY skipped — Lean mode." Proceed to Step 5 (present stories for review).
 - `full` → spawn as normal.
 
-After decomposing all stories (Step 4 complete) but before presenting them for write approval, spawn `qa-lead` via Task using gate **QL-STORY-READY** (`.claude/docs/director-gates.md`).
+After decomposing all stories (Step 4 complete) but before presenting them for write approval, Review test coverage and readiness. Flag gaps for the user. .
 
 Pass: the full story list with acceptance criteria, story types, and TR-IDs; the epic's GDD acceptance criteria for reference.
 
 Present the QA lead's assessment. For each story flagged as GAPS or INADEQUATE, revise the acceptance criteria before proceeding — stories with untestable criteria cannot be implemented correctly. Once all stories reach ADEQUATE, proceed.
 
-**After ADEQUATE**: for every Logic and Integration story, ask the qa-lead to produce concrete test case specifications — one per acceptance criterion — in this format:
+**After ADEQUATE**: for every Logic and Integration story, ask the qa-tester to produce concrete test case specifications — one per acceptance criterion — in this format:
 
 ```
 Test: [criterion text]
@@ -224,7 +224,7 @@ change meaning. This is what the programmer reads instead of the ADR.]
 
 ## QA Test Cases
 
-*Written by qa-lead at story creation. The developer implements against these — do not invent new test cases during implementation.*
+*Written by qa-tester at story creation. The developer implements against these — do not invent new test cases during implementation.*
 
 **[For Logic / Integration stories — automated test specs]:**
 
@@ -309,5 +309,5 @@ Note in output: "Work through stories in order — each story's `Depends on:` fi
 
 After writing (or declining):
 
-- **Verdict: COMPLETE** — [N] stories written to `production/epics/[epic-slug]/`. Run `/story-readiness` → `/dev-story` to begin implementation.
+- **Verdict: COMPLETE** — [N] stories written to `production/epics/[epic-slug]/`. Run `/dev-story` → `/dev-story` to begin implementation.
 - **Verdict: BLOCKED** — user declined. No story files written.

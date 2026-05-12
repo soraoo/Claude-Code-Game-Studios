@@ -21,7 +21,7 @@ will have changed.
 
 **Next step after each epic:** `/create-stories [epic-slug]`
 
-**When to run:** After `/create-control-manifest` and `/architecture-review` pass.
+**When to run:** After   pass.
 
 ---
 
@@ -32,7 +32,7 @@ Resolve the review mode (once, store for all gate spawns this run):
 2. Else read `production/review-mode.txt` → use that value
 3. Else → default to `lean`
 
-See `.claude/docs/director-gates.md` for the full check pattern.
+
 
 **Modes:**
 - `/create-epics all` — process all systems in layer order
@@ -113,7 +113,7 @@ Present to user before writing anything:
 If there are untraced requirements:
 > "⚠️ [N] requirements in [system] have no ADR. The epic can be created, but
 > stories for these requirements will be marked Blocked until ADRs exist.
-> Run `/architecture-decision` first, or proceed with placeholders."
+> Run ADR in docs/architecture/ first, or proceed with placeholders."
 
 Ask: "Shall I create Epic: [name]?"
 Options: "Yes, create it", "Skip", "Pause — I need to write ADRs first"
@@ -127,11 +127,11 @@ Options: "Yes, create it", "Skip", "Pause — I need to write ADRs first"
 - `lean` → skip (not a PHASE-GATE). Note: "PR-EPIC skipped — Lean mode." Proceed to Step 5 (write epic files).
 - `full` → spawn as normal.
 
-After all epics for the current layer are defined (Step 4 completed for all in-scope systems), and before writing any files, spawn `producer` via Task using gate **PR-EPIC** (`.claude/docs/director-gates.md`).
+After all epics for the current layer are defined (Step 4 completed for all in-scope systems), and before writing any files, Review for production feasibility. Flag issues for the user. .
 
 Pass: the full epic structure summary (all epics, their scope summaries, governing ADR counts), the layer being processed, milestone timeline and team capacity.
 
-Present the producer's assessment. If UNREALISTIC, offer to revise epic boundaries (split overscoped or merge underscoped epics) before writing. If CONCERNS, surface them and let the user decide. Do not write epic files until the producer gate resolves.
+Present the feasibility assessment. If UNREALISTIC, offer to revise epic boundaries (split overscoped or merge underscoped epics) before writing. If CONCERNS, surface them and let the user decide. Do not write epic files until the producer gate resolves.
 
 ---
 

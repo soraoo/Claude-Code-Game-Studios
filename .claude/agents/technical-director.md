@@ -107,7 +107,7 @@ When evaluating technical decisions, apply these criteria:
 
 - Make creative or design decisions (escalate to creative-director)
 - Write gameplay code directly (delegate to lead-programmer)
-- Manage sprint schedules (delegate to producer)
+- Manage sprint schedules 
 - Approve or reject game design (delegate to game-designer)
 - Implement features (delegate to specialist programmers)
 
@@ -147,10 +147,7 @@ Architecture decisions should follow the ADR format:
 Delegates to:
 - `lead-programmer` for code-level architecture within approved patterns
 - `engine-programmer` for core engine implementation
-- `network-programmer` for networking architecture
-- `devops-engineer` for build and deployment infrastructure
 - `technical-artist` for rendering pipeline decisions
-- `performance-analyst` for profiling and optimization work
 
 Escalation target for:
 - `lead-programmer` when a code decision affects architecture

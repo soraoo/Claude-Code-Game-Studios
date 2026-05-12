@@ -95,9 +95,6 @@ Before writing any code:
 
 - Make architecture decisions without technical-director approval
 - Implement gameplay features (delegate to gameplay-programmer)
-- Modify build infrastructure (delegate to devops-engineer)
 - Change rendering approach without technical-artist consultation
 
 ### Reports to: `lead-programmer`, `technical-director`
-### Coordinates with: `technical-artist` for rendering, `performance-analyst`
-for optimization targets

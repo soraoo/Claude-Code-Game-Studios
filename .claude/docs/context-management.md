@@ -20,25 +20,7 @@ after each significant milestone:
 The state file should contain: current task, progress checklist, key decisions
 made, files being worked on, and open questions.
 
-### Status Line Block (Production+ only)
-
-When the project is in Production, Polish, or Release stage, include a structured
-status block in `active.md` that the status line script can parse:
-
-```markdown
-<!-- STATUS -->
-Epic: Combat System
-Feature: Melee Combat
-Task: Implement hitbox detection
-<!-- /STATUS -->
-```
-
-- All three fields (Epic, Feature, Task) are optional — include only what applies
-- Update this block when switching focus areas
-- The status line displays it as a breadcrumb: `Combat System > Melee Combat > Hitboxes`
-- Remove or empty the block when no active work focus exists
-
-After any disruption (compaction, crash, `/clear`), read the state file first.
+After any disruption (compaction, crash), read the state file first.
 
 ### Incremental File Writing
 
@@ -63,22 +45,6 @@ This keeps the context window holding only the *current* section's discussion
 - **Focused compaction:** `/compact Focus on [current task] — sections 1-3 are
   written to file, working on section 4`
 
-## Context Budgets by Task Type
-
-- Light (read/review): ~3k tokens startup
-- Medium (implement feature): ~8k tokens
-- Heavy (multi-system refactor): ~15k tokens
-
-## Subagent Delegation
-
-Use subagents for research and exploration to keep the main session clean.
-Subagents run in their own context window and return only summaries:
-
-- **Use subagents** when investigating across multiple files, exploring unfamiliar code,
-  or doing research that would consume >5k tokens of file reads
-- **Use direct reads** when you know exactly which 1-2 files to check
-- Subagents do not inherit conversation history — provide full context in the prompt
-
 ## Compaction Instructions
 
 When context is compacted, preserve the following in the summary:
@@ -87,7 +53,6 @@ When context is compacted, preserve the following in the summary:
 - List of files modified in this session and their purpose
 - Any architectural decisions made and their rationale
 - Active sprint tasks and their current status
-- Agent invocations and their outcomes (success/failure/blocked)
 - Test results (pass/fail counts, specific failures)
 - Unresolved blockers or questions awaiting user input
 - The current task and what step we are on

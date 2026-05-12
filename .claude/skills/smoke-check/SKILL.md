@@ -46,7 +46,7 @@ Phase 5 outputs a per-platform verdict table in addition to the overall verdict.
 Before running anything, understand the environment:
 
 1. **Test framework check**: verify `tests/` directory exists.
-   If it does not: "No test directory found at `tests/`. Run `/test-setup`
+   If it does not: "No test directory found at `tests/`. Run 
    to scaffold the testing infrastructure, or create the directory manually
    if tests live elsewhere." Then stop.
 
@@ -409,7 +409,7 @@ agent to begin manual verification."
 - **Never auto-fix failures** — report them and state what must be resolved.
   Do not attempt to edit source code or test files.
 - **PASS WITH WARNINGS does not block QA hand-off** — it records advisory
-  gaps for `/story-done` to follow up on.
+  gaps f to follow up on.
 - **`quick` argument** skips Phase 3 (coverage scan) and Phase 4 Batch 3.
   Use it for rapid re-checks after fixing a specific failure.
 - Use `AskUserQuestion` for all manual smoke check verification.

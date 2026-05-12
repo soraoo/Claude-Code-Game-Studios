@@ -15,7 +15,7 @@ When this skill is invoked:
    2. Else read `production/review-mode.txt` → use that value
    3. Else → default to `lean`
 
-   See `.claude/docs/director-gates.md` for the full check pattern.
+   
 
 2. **Check for existing concept work**:
    - Read `design/gdd/game-concept.md` if it exists (resume, don't restart)
@@ -203,10 +203,10 @@ Repeat until the user selects [A] Lock these in.
 
 **After pillars and anti-pillars are agreed, spawn BOTH `creative-director` AND `art-director` via Task in parallel before moving to Phase 5. Issue both Task calls simultaneously — do not wait for one before starting the other.**
 
-- **`creative-director`** — gate **CD-PILLARS** (`.claude/docs/director-gates.md`)
+- **`creative-director`** — gate **CD-PILLARS** 
   Pass: full pillar set with design tests, anti-pillars, core fantasy, unique hook.
 
-- **`art-director`** — gate **AD-CONCEPT-VISUAL** (`.claude/docs/director-gates.md`)
+- **`art-director`** — gate **AD-CONCEPT-VISUAL** 
   Pass: game concept elevator pitch, full pillar set with design tests, target platform (if known), any reference games or visual touchstones the user mentioned.
 
 Collect both verdicts, then present them together using a two-tab `AskUserQuestion`:
@@ -259,7 +259,7 @@ Ground the concept in reality:
 - `lean` → skip (not a PHASE-GATE). Note: "TD-FEASIBILITY skipped — Lean mode." Proceed directly to scope tier definition.
 - `full` → spawn as normal.
 
-**After identifying biggest technical risks, spawn `technical-director` via Task using gate TD-FEASIBILITY (`.claude/docs/director-gates.md`) before scope tiers are defined.**
+**After identifying biggest technical risks, spawn `technical-director` via Task using gate TD-FEASIBILITY  before scope tiers are defined.**
 
 Pass: core loop description, platform target, engine choice (or "undecided"), list of identified technical risks.
 
@@ -270,7 +270,7 @@ Present the assessment to the user. If HIGH RISK, offer to revisit scope before 
 - `lean` → skip (not a PHASE-GATE). Note: "PR-SCOPE skipped — Lean mode." Proceed to document generation.
 - `full` → spawn as normal.
 
-**After scope tiers are defined, spawn `producer` via Task using gate PR-SCOPE (`.claude/docs/director-gates.md`).**
+**After scope tiers are defined, Producer gate skipped in indie mode.
 
 Pass: full vision scope, MVP definition, timeline estimate, team size.
 
@@ -310,12 +310,12 @@ If yes, generate the document using the template at `.claude/docs/templates/game
    pre-production pipeline). List ALL steps — do not abbreviate or truncate:
    1. "Run `/setup-engine` to configure the engine and populate version-aware reference docs"
    2. "Run `/art-bible` to create the visual identity specification — do this BEFORE writing GDDs. The art bible gates asset production and shapes technical architecture decisions (rendering, VFX, UI systems)."
-   3. "Use `/design-review design/gdd/game-concept.md` to validate concept completeness before going downstream"
+   3. "Use GDD review to validate concept completeness before going downstream"
    4. "Discuss vision with the `creative-director` agent for pillar refinement"
-   5. "Decompose the concept into individual systems with `/map-systems` — maps dependencies, assigns priorities, and creates the systems index"
+   5. "Decompose the concept into individual systems with `/brainstorm` — maps dependencies, assigns priorities, and creates the systems index"
    5. "Author per-system GDDs with `/design-system` — guided, section-by-section GDD writing for each system identified in step 4"
-   6. "Plan the technical architecture with `/create-architecture` — produces the master architecture blueprint and Required ADR list"
-   7. "Record key architectural decisions with `/architecture-decision (×N)` — write one ADR per decision in the Required ADR list from `/create-architecture`"
+   6. "Plan the technical architecture with  — produces the master architecture blueprint and Required ADR list"
+   7. "Record key architectural decisions with `/architecture-decision (×N)` — write one ADR per decision in the Required ADR list from "
    8. "Validate readiness to advance with `/gate-check` — phase gate before committing to production"
    9. "Prototype the riskiest system with `/prototype [core-mechanic]` — validate the core loop before full implementation"
    10. "Run `/playtest-report` after the prototype to validate the core hypothesis"
@@ -344,7 +344,7 @@ append this notice to the current response before continuing:
 After the game concept is written, follow the pre-production pipeline in order:
 1. `/setup-engine` — configure the engine and populate version-aware reference docs
 2. `/art-bible` — establish visual identity before writing any GDDs
-3. `/map-systems` — decompose the concept into individual systems with dependencies
+3. `/brainstorm` — decompose the concept into individual systems with dependencies
 4. `/design-system [first-system]` — author per-system GDDs in dependency order
-5. `/create-architecture` — produce the master architecture blueprint
+5.  — produce the master architecture blueprint
 6. `/gate-check pre-production` — validate readiness before committing to production

@@ -66,7 +66,7 @@ Before writing any code:
    styling, animation, input handling, and focus management.
 2. **Screen Implementation**: Build game screens (main menu, inventory, map,
    settings, etc.) following mockups from art-director and flows from
-   ux-designer.
+   game-designer.
 3. **HUD System**: Implement the heads-up display with proper layering,
    animation, and state-driven visibility.
 4. **Data Binding**: Implement reactive data binding between game state and UI
@@ -94,9 +94,9 @@ Before writing any code:
 
 ### What This Agent Must NOT Do
 
-- Design UI layouts or visual style (implement specs from art-director/ux-designer)
+- Design UI layouts or visual style (implement specs from art-director/game-designer)
 - Implement gameplay logic in UI code (UI displays state, does not own it)
 - Modify game state directly (use commands/events through the game layer)
 
 ### Reports to: `lead-programmer`
-### Implements specs from: `art-director`, `ux-designer`
+### Implements specs from: `art-director`, `game-designer`
