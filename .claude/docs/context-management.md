@@ -1,72 +1,63 @@
-# Context Management
+# 上下文管理
 
-Context is the most critical resource in a Claude Code session. Manage it actively.
+上下文是 Claude Code 会话中最关键的资源。需要主动管理它。
 
-## File-Backed State (Primary Strategy)
+## 基于文件的状态（主要策略）
 
-**The file is the memory, not the conversation.** Conversations are ephemeral and
-will be compacted or lost. Files on disk persist across compactions and session crashes.
+**文件才是记忆，而非对话。** 会话是短暂的，会被压缩或丢失。磁盘上的文件在压缩和会话崩溃后仍然持久存在。
 
-### Session State File
+### 会话状态文件
 
-Maintain `production/session-state/active.md` as a living checkpoint. Update it
-after each significant milestone:
+维护 `production/session-state/active.md` 作为活动检查点。在每达成一个重要里程碑后更新它：
 
-- Design section approved and written to file
-- Architecture decision made
-- Implementation milestone reached
-- Test results obtained
+- 设计章节获批并写入文件
+- 架构决策已制定
+- 实现里程碑已达成
+- 测试结果已获取
 
-The state file should contain: current task, progress checklist, key decisions
-made, files being worked on, and open questions.
+状态文件应包含：当前任务、进度清单、已做出的关键决策、正在处理的文件以及待解决的问题。
 
-After any disruption (compaction, crash), read the state file first.
+在任何中断（压缩、崩溃）发生后，首先阅读状态文件。
 
-### Incremental File Writing
+### 增量文件写入
 
-When creating multi-section documents (design docs, architecture docs, lore entries):
+当创建多章节文档（设计文档、架构文档、背景故事条目）时：
 
-1. Create the file immediately with a skeleton (all section headers, empty bodies)
-2. Discuss and draft one section at a time in conversation
-3. Write each section to the file as soon as it's approved
-4. Update the session state file after each section
-5. After writing a section, previous discussion about that section can be safely
-   compacted — the decisions are in the file
+1. 立即创建带有骨架的文件（所有章标题，内容为空）
+2. 在对话中逐节讨论和起草
+3. 每节获批后立即写入文件
+4. 每节完成后更新会话状态文件
+5. 写入章节后，之前关于该章节的讨论可以安全压缩——决策已在文件中
 
-This keeps the context window holding only the *current* section's discussion
-(~3-5k tokens) instead of the entire document's conversation history (~30-50k tokens).
+这样上下文窗口只需要保存当前章节的讨论（约 3-5k token），而非整个文档的对话历史（约 30-50k token）。
 
-## Proactive Compaction
+## 主动压缩
 
-- **Compact proactively** at ~60-70% context usage, not reactively at the limit
-- **Use `/clear`** between unrelated tasks, or after 2+ failed correction attempts
-- **Natural compaction points:** after writing a section to file, after committing,
-  after completing a task, before starting a new topic
-- **Focused compaction:** `/compact Focus on [current task] — sections 1-3 are
-  written to file, working on section 4`
+- **主动压缩**：在上下文使用率达到约 60-70% 时主动压缩，而非被动达到上限
+- **在不相关任务之间使用 `/clear`**，或在 2 次以上失败的纠正尝试后使用
+- **自然压缩点**：在某节写入文件后、提交后、完成任务后、开始新话题前
+- **聚焦压缩**：`/compact 聚焦于[当前任务]——第 1-3 节已写入文件，正在处理第 4 节`
 
-## Compaction Instructions
+## 压缩指令
 
-When context is compacted, preserve the following in the summary:
+当上下文被压缩时，在摘要中保留以下内容：
 
-- Reference to `production/session-state/active.md` (read it to recover state)
-- List of files modified in this session and their purpose
-- Any architectural decisions made and their rationale
-- Active sprint tasks and their current status
-- Test results (pass/fail counts, specific failures)
-- Unresolved blockers or questions awaiting user input
-- The current task and what step we are on
-- Which sections of the current document are written to file vs. still in progress
+- 指向 `production/session-state/active.md` 的引用（阅读它以恢复状态）
+- 本会话中修改过的文件列表及其用途
+- 做出的任何架构决策及其理由
+- 活跃的迭代任务及其当前状态
+- 测试结果（通过/失败数量、具体失败项）
+- 未解决的阻碍或等待用户输入的问题
+- 当前任务及所处步骤
+- 当前文档的哪些章节已写入文件 vs. 仍在处理中
 
-**After compaction:** Read `production/session-state/active.md` and any files being
-actively worked on to recover full context. The files contain the decisions; the
-conversation history is secondary.
+**压缩后：** 阅读 `production/session-state/active.md` 以及任何正在积极处理的文件，以恢复完整上下文。文件中包含决策；对话历史是次要的。
 
-## Recovery After Session Crash
+## 会话崩溃后的恢复
 
-If a session dies ("prompt too long") or you start a new session to continue work:
+如果会话死掉（"提示词过长"）或你开启新会话继续工作：
 
-1. The `session-start.sh` hook will detect and preview `active.md` automatically
-2. Read the full state file for context
-3. Read the partially-completed file(s) listed in the state
-4. Continue from the next incomplete section or task
+1. `session-start.sh` Hook 将自动检测并预览 `active.md`
+2. 阅读完整状态文件获取上下文
+3. 阅读状态中列出的部分完成的文件
+4. 从下一个不完整的章节或任务继续

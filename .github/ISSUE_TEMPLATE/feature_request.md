@@ -1,40 +1,40 @@
 ---
 name: Feature Request
-about: Suggest a new agent, skill, hook, or improvement
+about: 建议新增 Agent、Skill、Hook 或改进
 title: "[Feature] "
 labels: enhancement
 assignees: ''
 ---
 
-## Summary
+## 摘要
 
-A brief description of what you'd like added or changed.
+简要描述你希望添加或更改的内容。
 
-## Type
+## 类型
 
-- [ ] New agent
-- [ ] New skill (slash command)
-- [ ] New hook
-- [ ] New rule
-- [ ] New template
-- [ ] Improvement to existing component
-- [ ] Other:
+- [ ] 新增 Agent
+- [ ] 新增 Skill（斜杠命令）
+- [ ] 新增 Hook
+- [ ] 新增 Rule
+- [ ] 新增模板
+- [ ] 对现有组件的改进
+- [ ] 其他：
 
-## Problem / Motivation
+## 问题 / 动机
 
-What problem does this solve? What workflow does it improve?
+这解决了什么问题？它改善了哪个工作流？
 
-## Proposed Solution
+## 提议的方案
 
-How do you think this should work? Include details like:
-- For agents: what domain, what tier, what tools
-- For skills: what the workflow looks like, what it outputs
-- For hooks: what event triggers it, what it validates
+你认为这应该如何工作？包含以下细节：
+- 对于 Agent：什么领域、什么层级、什么工具
+- 对于 Skill：工作流是什么样子、输出什么
+- 对于 Hook：什么事件触发它、它验证什么
 
-## Alternatives Considered
+## 考虑的替代方案
 
-Any other approaches you've thought about.
+你考虑过的任何其他方法。
 
-## Additional Context
+## 附加上下文
 
-Examples, references, or screenshots that help explain the request.
+帮助解释需求的示例、参考或截图。

@@ -1,38 +1,38 @@
-# Coding Standards
+# 编码标准
 
-## Prototype Phase (Phase 2)
+## 原型阶段（阶段 2）
 
-- Hardcode values freely — optimize for speed, not polish
-- Skip tests — validate by playing
-- Placeholder assets are fine
-- Code can be thrown away after validation
+- 自由地硬编码数值——为速度优化，而非打磨
+- 跳过测试——通过玩游戏来验证
+- 可以使用临时占位资源
+- 代码在验证后可以丢弃
 
-## Production Phase (Phase 3+)
+## 生产阶段（阶段 3+）
 
-- Gameplay values must be data-driven (external config), never hardcoded
-- All public methods should be unit-testable (dependency injection over singletons)
-- Use doc comments on public APIs
+- 玩法数值必须数据驱动（外部配置），绝不可硬编码
+- 所有公共方法应可单元测试（依赖注入优先于单例）
+- 对公共 API 使用文档注释
 
-## Design Document Standards
+## 设计文档标准
 
-- All design docs use Markdown
-- GDD files should include these 4 core sections:
-  1. **Overview** — what the system does
-  2. **Player Experience** — how it feels
-  3. **Rules & Formulas** — mechanics and math
-  4. **Acceptance Criteria** — testable success conditions
-- Add Dependencies, Tuning Knobs, and Edge Cases sections as needed
+- 所有设计文档使用 Markdown
+- GDD 文件应包含以下 4 个核心章节：
+  1. **概述** — 系统做什么
+  2. **玩家体验** — 感受如何
+  3. **规则与公式** — 机制和数学
+  4. **验收标准** — 可测试的成功条件
+- 根据需要添加依赖关系、调优旋钮和边缘情况章节
 
-## Testing Standards
+## 测试标准
 
-- **Tests are deferred to Phase 4** — write automated tests only after you have a playable demo
-- In Production (Phase 3), test by playing — smoke check style verification
-- In Polish (Phase 4), add automated tests for Logic and Integration stories
-- Test naming: `[system]_[feature]_test.[ext]` for files; `test_[scenario]_[expected]` for functions
-- Tests must be deterministic, isolated, and independent
+- **测试推迟到阶段 4** — 只有拥有可玩演示后再编写自动化测试
+- 在生产阶段（阶段 3），通过玩来测试——冒烟测试式验证
+- 在打磨阶段（阶段 4），为 Logic 和 Integration Story 添加自动化测试
+- 测试命名：文件用 `[系统]_[功能]_test.[扩展名]`；函数用 `test_[场景]_[预期]`
+- 测试必须确定性的、隔离的且独立的
 
-## What NOT to Automate
+## 不应自动化的内容
 
-- Visual fidelity (shader output, VFX appearance, animation curves)
-- "Feel" qualities (input responsiveness, perceived weight, timing)
-- Full gameplay sessions (covered by playtesting)
+- 视觉保真度（着色器输出、VFX 外观、动画曲线）
+- "手感"质量（输入响应性、感知重量、时机）
+- 完整游戏会话（由试玩覆盖）

@@ -1,6 +1,6 @@
 ---
 name: changelog
-description: "Auto-generates a changelog from git commits, sprint data, and design documents. Produces both internal and player-facing versions."
+description: "从 Git 提交、迭代数据和设计文档自动生成更新日志。同时生成内部版本和面向玩家的版本。"
 argument-hint: "[version|sprint-number]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash, Write
@@ -10,168 +10,159 @@ context: |
 model: haiku
 ---
 
-## Phase 1: Parse Arguments
+## 阶段 1：解析参数
 
-Read the argument for the target version or sprint number. If a version is given, use the corresponding git tag. If a sprint number is given, use the sprint date range.
+读取参数中的目标版本或迭代编号。如果给出的是版本号，使用对应的 Git 标签。如果给出的是迭代编号，使用迭代日期范围。
 
-Verify the repository is initialized: run `git rev-parse --is-inside-work-tree` to confirm git is available. If not a git repo, inform the user and abort gracefully.
+验证仓库已初始化：运行 `git rev-parse --is-inside-work-tree` 确认 Git 可用。如果不是 Git 仓库，通知用户并优雅终止。
 
 ---
 
-## Phase 2: Gather Change Data
+## 阶段 2：收集变更数据
 
-Read the git log since the last tag or release:
+读取自上次标签或发布以来的 Git 日志：
 
 ```
 git log --oneline [last-tag]..HEAD
 ```
 
-If no tags exist, read the full log or a reasonable recent range (last 100 commits).
+如果没有标签存在，读取完整日志或合理的最近范围（最近 100 次提交）。
 
-Read sprint reports from `production/sprints/` for the relevant period to understand planned work and context behind changes.
+从 `production/sprints/` 读取相关期间的迭代报告，以了解计划的工作和变更背后的上下文。
 
-Read completed design documents from `design/gdd/` for any new features implemented during this period.
-
----
-
-## Phase 3: Categorize Changes
-
-Categorize every change into one of these categories:
-
-- **New Features**: Entirely new gameplay systems, modes, or content
-- **Improvements**: Enhancements to existing features, UX improvements, performance gains
-- **Bug Fixes**: Corrections to broken behavior
-- **Balance Changes**: Tuning of gameplay values, difficulty, economy
-- **Known Issues**: Issues the team is aware of but have not yet resolved
-- **Miscellaneous**: Changes that do not fit the above categories, or commits whose messages are too vague to classify confidently
-
-For each commit, check whether the message contains a task ID or story reference
-(e.g. `[STORY-123]`, `TR-`, `#NNN`, or similar). Count commits that lack any task reference
-and include this count in the Phase 4 Metrics section as: `Commits without task reference: [N]`.
+从 `design/gdd/` 读取在此期间实现的任何新功能的已完成设计文档。
 
 ---
 
-## Phase 4: Generate Internal Changelog
+## 阶段 3：分类变更
+
+将每个变更分类到以下类别之一：
+
+- **新功能**：全新的玩法系统、模式或内容
+- **改进**：对现有功能的增强、UX 改进、性能提升
+- **Bug 修复**：对错误行为的纠正
+- **平衡性调整**：对玩法数值、难度、经济的调优
+- **已知问题**：团队已知但尚未解决的问题
+- **杂项**：不适合以上类别的变更，或提交信息过于模糊无法自信分类的提交
+
+对每个提交，检查其信息是否包含任务 ID 或 Story 引用（例如 `[STORY-123]`、`TR-`、`#NNN` 或类似）。统计缺少任何任务引用的提交数，并在阶段 4 指标章节中计入此数量：`缺少任务引用的提交：[N]`。
+
+---
+
+## 阶段 4：生成内部更新日志
 
 ```markdown
-# Internal Changelog: [Version]
-Date: [Date]
-Sprint(s): [Sprint numbers covered]
-Commits: [Count] ([first-hash]..[last-hash])
+# 内部更新日志：[版本号]
+日期：[日期]
+迭代：[覆盖的迭代编号]
+提交数：[数量]（[起始哈希]..[结束哈希]）
 
-## New Features
-- [Feature Name] -- [Technical description, affected systems]
-  - Commits: [hash1], [hash2]
-  - Owner: [who implemented it]
-  - Design doc: [link if applicable]
+## 新功能
+- [功能名称] -- [技术描述、受影响的系统]
+  - 提交：[哈希1]、[哈希2]
+  - 负责人：[谁实现的]
+  - 设计文档：[如果适用，链接]
 
-## Improvements
-- [Improvement] -- [What changed technically and why]
-  - Commits: [hashes]
-  - Owner: [who]
+## 改进
+- [改进] -- [技术上改变了什么以及为什么]
+  - 提交：[哈希列表]
+  - 负责人：[谁]
 
-## Bug Fixes
-- [BUG-ID] [Description of bug and root cause]
-  - Fix: [What was changed]
-  - Commits: [hashes]
-  - Owner: [who]
+## Bug 修复
+- [BUG-ID] [Bug 描述及根因]
+  - 修复：[更改了什么]
+  - 提交：[哈希列表]
+  - 负责人：[谁]
 
-## Balance Changes
-- [What was tuned] -- [Old value -> New value] -- [Design intent]
-  - Owner: [who]
+## 平衡性调整
+- [调整了什么] -- [旧值 -> 新值] -- [设计意图]
+  - 负责人：[谁]
 
-## Technical Debt / Refactoring
-- [What was cleaned up and why]
-  - Commits: [hashes]
+## 技术债 / 重构
+- [清理了什么以及为什么]
+  - 提交：[哈希列表]
 
-## Miscellaneous
-- [Change that didn't fit other categories, or vague commit message]
-  - Commits: [hashes]
+## 杂项
+- [不适合其他类别的变更，或模糊的提交信息]
+  - 提交：[哈希列表]
 
-## Known Issues
-- [Issue description] -- [Severity] -- [ETA for fix if known]
+## 已知问题
+- [问题描述] -- [严重性] -- [预计修复时间（如已知）]
 
-## Metrics
-- Total commits: [N]
-- Files changed: [N]
-- Lines added: [N]
-- Lines removed: [N]
-- Commits without task reference: [N]
+## 指标
+- 总提交数：[N]
+- 文件变更数：[N]
+- 添加行数：[N]
+- 删除行数：[N]
+- 缺少任务引用的提交：[N]
 ```
 
 ---
 
-## Phase 5: Generate Player-Facing Changelog
+## 阶段 5：生成面向玩家的更新日志
 
 ```markdown
-# What is New in [Version]
+# [版本号] 更新内容
 
-## New Features
-- **[Feature Name]**: [Player-friendly description of what they can now do
-  and why it is exciting. Focus on the experience, not the implementation.]
+## 新功能
+- **[功能名称]**：[面向玩家描述他们现在可以做什么以及为什么令人兴奋。聚焦体验，而非实现。]
 
-## Improvements
-- **[What improved]**: [How this makes the game better for the player.
-  Be specific but avoid jargon.]
+## 改进
+- **[改进了什么]**：[这如何让游戏对玩家更好。要具体但避免术语。]
 
-## Bug Fixes
-- Fixed an issue where [describe what the player experienced, not what was
-  wrong in the code]
-- Fixed [player-visible symptom]
+## Bug 修复
+- 修复了 [描述玩家体验到的问题，而非代码中的错误] 的问题
+- 修复了 [玩家可见的症状]
 
-## Balance Changes
-- [What changed in player-understandable terms and the design intent.
-  Example: "Healing potions now restore 50 HP (up from 30) -- we felt
-  players needed more recovery options in late-game encounters."]
+## 平衡性调整
+- [用玩家能理解的语言描述调整内容及设计意图。
+  示例："治疗药水现在恢复 50 HP（此前为 30）——我们觉得玩家在后期遭遇战中需要更多恢复手段。"]
 
-## Known Issues
-- We are aware of [issue description in player terms] and are working on a
-  fix. [Workaround if one exists.]
+## 已知问题
+- 我们已知 [用玩家语言描述问题] 并正在修复中。[如果有变通办法请说明。]
 
 ---
-Thank you for playing! Your feedback helps us make the game better.
-Report issues at [link].
+感谢你的游玩！你的反馈帮助我们让游戏变得更好。
+问题反馈至 [链接]。
 ```
 
 ---
 
-## Phase 6: Output
+## 阶段 6：输出
 
-Output both changelogs to the user. The internal changelog is the primary working document. The player-facing changelog is ready for community posting after review.
-
----
-
-## Phase 7: Offer File Write
-
-After presenting the changelogs, ask the user:
-
-> "May I write this changelog to `docs/CHANGELOG.md`?
-> [A] Yes, append this entry (recommended if the file already exists)
-> [B] Yes, overwrite the file entirely
-> [C] No — I'll copy it manually"
-
-- Check whether `docs/CHANGELOG.md` exists before asking. If it does, default the
-  recommendation to **[A] append**.
-- If the user selects [A]: append the new internal changelog entry to the top of
-  the existing file (newest entries first).
-- If the user selects [B]: overwrite the file with the new changelog.
-- If the user selects [C]: stop here without writing.
-
-After a successful write: Verdict: **CHANGELOG WRITTEN** — changelog saved to `docs/CHANGELOG.md`.
-If the user declines: Verdict: **COMPLETE** — changelog generated.
+向用户输出两个更新日志。内部更新日志是主要工作文档。面向玩家的更新日志经过审查后即可用于社区发布。
 
 ---
 
-## Phase 7: Next Steps
+## 阶段 7：提供文件写入
 
-- Use `/patch-notes [version]` to generate a styled, saved version for public release.
-- Use `/gate-check` before publishing the changelog externally.
+展示更新日志后，询问用户：
 
-### Guidelines
+> "我可以将此更新日志写入 `docs/CHANGELOG.md` 吗？
+> [A] 是，追加此条目（如果文件已存在则推荐此选项）
+> [B] 是，完全覆盖文件
+> [C] 否——我会手动复制"
 
-- Never expose internal code references, file paths, or developer names in the player-facing changelog
-- Group related changes together rather than listing individual commits
-- If a commit message is unclear, check the associated files and sprint data for context
-- Balance changes should always include the design reasoning, not just the numbers
-- Known issues should be honest — players appreciate transparency
-- If the git history is messy (merge commits, reverts, fixup commits), clean up the narrative rather than listing every commit literally
+- 在询问前检查 `docs/CHANGELOG.md` 是否存在。如果存在，默认推荐 **[A] 追加**。
+- 如果用户选择 [A]：将新的内部更新日志条目追加到现有文件顶部（最新条目在前）。
+- 如果用户选择 [B]：用新更新日志覆盖文件。
+- 如果用户选择 [C]：在此停止，不写入。
+
+写入成功后：判定：**CHANGELOG WRITTEN**——更新日志已保存到 `docs/CHANGELOG.md`。
+如果用户拒绝：判定：**COMPLETE**——更新日志已生成。
+
+---
+
+## 阶段 8：后续步骤
+
+- 使用 `/patch-notes [版本号]` 生成样式化的、已保存的公开版本。
+- 在对外发布更新日志之前使用 `/gate-check`。
+
+### 指南
+
+- 绝不在面向玩家的更新日志中暴露内部代码引用、文件路径或开发者姓名
+- 将相关变更分组在一起，而非列出单个提交
+- 如果提交信息不清晰，检查关联文件和迭代数据以获取上下文
+- 平衡性调整应始终包含设计理由，而不仅仅是数字
+- 已知问题应诚实——玩家欣赏透明度
+- 如果 Git 历史杂乱（合并提交、回退、修正提交），清理叙事而非字面列出每个提交

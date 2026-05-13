@@ -1,11 +1,11 @@
-# Path-Specific Rules
+# 路径特定规则
 
-Rules in `.claude/rules/` are automatically enforced when editing files in matching paths:
+`.claude/rules/` 中的规则在编辑匹配路径的文件时自动执行：
 
-| Rule File | Path Pattern | Enforces |
+| 规则文件 | 路径模式 | 执行内容 |
 | ---- | ---- | ---- |
-| `gameplay-code.md` | `src/gameplay/**` | Data-driven values, delta time, no UI references |
-| `engine-code.md` | `src/core/**` | Zero allocs in hot paths, thread safety, API stability |
-| `ui-code.md` | `src/ui/**` | No game state ownership, localization-ready |
-| `test-standards.md` | `tests/**` | Test naming, coverage requirements, fixture patterns |
-| `prototype-code.md` | `prototypes/**` | Relaxed standards, README required, hypothesis documented |
+| `gameplay-code.md` | `src/gameplay/**` | 数据驱动数值、delta time、禁止 UI 引用 |
+| `engine-code.md` | `src/core/**` | 热路径零分配、线程安全、API 稳定性 |
+| `ui-code.md` | `src/ui/**` | 禁止拥有游戏状态、本地化就绪 |
+| `test-standards.md` | `tests/**` | 测试命名、覆盖率要求、Fixture 模式 |
+| `prototype-code.md` | `prototypes/**` | 放宽标准、需要 README、记录假设 |

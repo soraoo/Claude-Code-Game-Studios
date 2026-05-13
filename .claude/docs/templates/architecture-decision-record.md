@@ -1,176 +1,163 @@
-# ADR-[NNNN]: [Title]
+# ADR-[NNNN]：[标题]
 
-## Status
+## 状态
 
-[Proposed | Accepted | Deprecated | Superseded by ADR-XXXX]
+[建议 | 已接受 | 已弃用 | 被 ADR-XXXX 取代]
 
-## Date
+## 日期
 
-[YYYY-MM-DD — when this ADR was written]
+[YYYY-MM-DD — 此 ADR 编写日期]
 
-## Last Verified
+## 最后验证
 
-[YYYY-MM-DD — when this ADR was last confirmed accurate against the current
-engine version and design. Update this date when you re-read and confirm it
-is still correct, even if nothing changed.]
+[YYYY-MM-DD — 此 ADR 最近一次确认与当前引擎版本和设计一致的日期。当你重新阅读并确认它仍然正确时更新此日期，即使没有变化。]
 
-## Decision Makers
+## 决策参与者
 
-[Who was involved in this decision]
+[谁参与了此决策]
 
-## Summary
+## 摘要
 
-[2 sentences: what problem this ADR solves, and what was decided. Written for
-tiered context loading — a skill scanning 20 ADRs uses this to decide whether
-to read the full decision. Be specific: name the system, the problem, and the
-chosen approach.]
+[2 句话：此 ADR 解决什么问题，以及决定了什么。为分层上下文加载而编写——扫描 20 个 ADR 的 Skill 使用此摘要判断是否需要阅读完整决策。要具体：指出系统名称、问题和所选择的方法。]
 
-## Engine Compatibility
+## 引擎兼容性
 
-| Field | Value |
+| 字段 | 值 |
 |-------|-------|
-| **Engine** | [e.g. Godot 4.6 / Unity 6 / Unreal Engine 5.4] |
-| **Domain** | [Physics / Rendering / UI / Audio / Navigation / Animation / Networking / Core / Input / Scripting] |
-| **Knowledge Risk** | [LOW — in training data / MEDIUM — near cutoff, verify / HIGH — post-cutoff, must verify] |
-| **References Consulted** | [e.g. `docs/engine-reference/godot/modules/physics.md`, `breaking-changes.md`] |
-| **Post-Cutoff APIs Used** | [Specific APIs from post-cutoff engine versions this decision depends on, or "None"] |
-| **Verification Required** | [Concrete behaviours to test against the target engine version before shipping, or "None"] |
+| **引擎** | [例如 Godot 4.6 / Unity 6 / Unreal Engine 5.4] |
+| **领域** | [物理 / 渲染 / UI / 音频 / 导航 / 动画 / 网络 / 核心 / 输入 / 脚本] |
+| **知识风险** | [低 — 在训练数据中 / 中 — 接近截止日期，需验证 / 高 — 超出截止日期，必须验证] |
+| **参考文档** | [例如 `docs/engine-reference/godot/modules/physics.md`、`breaking-changes.md`] |
+| **使用的截止后 API** | [此决策依赖的截止日期后引擎版本的特定 API，或"无"] |
+| **需要验证** | [发布前需要对照目标引擎版本测试的具体行为，或"无"] |
 
-> **Note**: If Knowledge Risk is MEDIUM or HIGH, this ADR must be re-validated if the
-> project upgrades engine versions. Flag it as "Superseded" and write a new ADR.
+> **注意**：如果知识风险为中或高，当项目升级引擎版本时，此 ADR 必须重新验证。将其标记为"已弃用"并撰写新的 ADR。
 
-## ADR Dependencies
+## ADR 依赖
 
-| Field | Value |
+| 字段 | 值 |
 |-------|-------|
-| **Depends On** | [ADR-NNNN (must be Accepted before this can be implemented), or "None"] |
-| **Enables** | [ADR-NNNN (this ADR unlocks that decision), or "None"] |
-| **Blocks** | [Epic/Story name — cannot start until this ADR is Accepted, or "None"] |
-| **Ordering Note** | [Any sequencing constraint that isn't captured above] |
+| **依赖于** | [ADR-NNNN（必须先接受此 ADR 才能实现），或"无"] |
+| **解锁** | [ADR-NNNN（此 ADR 解锁该决策），或"无"] |
+| **阻塞** | [Epic/Story 名称——在此 ADR 被接受之前无法开始，或"无"] |
+| **排序说明** | [上述未包含的任何顺序约束] |
 
-## Context
+## 上下文
 
-### Problem Statement
+### 问题陈述
 
-[What problem are we solving? Why must this decision be made now? What is the
-cost of not deciding?]
+[我们在解决什么问题？为什么现在必须做出此决策？不做决定的代价是什么？]
 
-### Current State
+### 当前状态
 
-[How does the system work today? What is wrong with the current approach?]
+[系统今天是如何工作的？当前方案有什么问题？]
 
-### Constraints
+### 约束
 
-- [Technical constraints -- engine limitations, platform requirements]
-- [Timeline constraints -- deadline pressures, dependencies]
-- [Resource constraints -- team size, expertise available]
-- [Compatibility requirements -- must work with existing systems]
+- [技术约束——引擎限制、平台要求]
+- [时间线约束——截止日期压力、依赖关系]
+- [资源约束——团队规模、可用专业知识]
+- [兼容性要求——必须与现有系统一起工作]
 
-### Requirements
+### 需求
 
-- [Functional requirement 1]
-- [Functional requirement 2]
-- [Performance requirement -- specific, measurable]
-- [Scalability requirement]
+- [功能需求 1]
+- [功能需求 2]
+- [性能需求——具体、可衡量]
+- [可扩展性需求]
 
-## Decision
+## 决策
 
-[The specific technical decision, described in enough detail for someone to
-implement it without further clarification.]
+[具体的技术决策，描述足够详细，实施者无需进一步澄清即可实现。]
 
-### Architecture
+### 架构
 
 ```
-[ASCII diagram showing the system architecture this decision creates.
-Show components, data flow direction, and key interfaces.]
+[ASCII 图展示此决策创建的系统架构。展示组件、数据流方向和关键接口。]
 ```
 
-### Key Interfaces
+### 关键接口
 
 ```
-[Pseudocode or language-specific interface definitions that this decision
-creates. These become the contracts that implementers must respect.]
+[此决策创建的伪代码或语言特定的接口定义。这些成为实施者必须遵守的契约。]
 ```
 
-### Implementation Guidelines
+### 实现指南
 
-[Specific guidance for the programmer implementing this decision.]
+[为实施此决策的程序员提供的具体指导。]
 
-## Alternatives Considered
+## 考虑的替代方案
 
-### Alternative 1: [Name]
+### 替代方案 1：[名称]
 
-- **Description**: [How this approach would work]
-- **Pros**: [What is good about this approach]
-- **Cons**: [What is bad about this approach]
-- **Estimated Effort**: [Relative effort compared to chosen approach]
-- **Rejection Reason**: [Why this was not chosen]
+- **描述**：[此方案如何工作]
+- **优点**：[此方案的优点]
+- **缺点**：[此方案的缺点]
+- **预估工作量**：[相对于所选方案的工作量]
+- **拒绝理由**：[为什么未被选择]
 
-### Alternative 2: [Name]
+### 替代方案 2：[名称]
 
-[Same structure as above]
+[与上述相同结构]
 
-## Consequences
+## 影响
 
-### Positive
+### 正面
 
-- [Good outcomes of this decision]
+- [此决策的良好结果]
 
-### Negative
+### 负面
 
-- [Trade-offs and costs we are accepting]
+- [我们接受的权衡和成本]
 
-### Neutral
+### 中性
 
-- [Changes that are neither good nor bad, just different]
+- [既不好也不坏的变更，只是不同]
 
-## Risks
+## 风险
 
-| Risk | Probability | Impact | Mitigation |
+| 风险 | 概率 | 影响 | 缓解措施 |
 |------|------------|--------|-----------|
 
-## Performance Implications
+## 性能影响
 
-| Metric | Before | Expected After | Budget |
+| 指标 | 之前 | 预期之后 | 预算 |
 |--------|--------|---------------|--------|
-| CPU (frame time) | [X]ms | [Y]ms | [Z]ms |
-| Memory | [X]MB | [Y]MB | [Z]MB |
-| Load Time | [X]s | [Y]s | [Z]s |
-| Network (if applicable) | [X]KB/s | [Y]KB/s | [Z]KB/s |
+| CPU（帧时间） | [X]ms | [Y]ms | [Z]ms |
+| 内存 | [X]MB | [Y]MB | [Z]MB |
+| 加载时间 | [X]s | [Y]s | [Z]s |
+| 网络（如适用） | [X]KB/s | [Y]KB/s | [Z]KB/s |
 
-## Migration Plan
+## 迁移计划
 
-[If this changes existing systems, the step-by-step plan to migrate.]
+[如果这更改了现有系统，提供逐步迁移计划。]
 
-1. [Step 1 -- what changes, what breaks, how to verify]
-2. [Step 2]
-3. [Step 3]
+1. [步骤 1——更改什么、什么会损坏、如何验证]
+2. [步骤 2]
+3. [步骤 3]
 
-**Rollback plan**: [How to revert if this decision proves wrong]
+**回滚计划**：[如果此决策被证明错误，如何回退]
 
-## Validation Criteria
+## 验证标准
 
-[How we will know this decision was correct after implementation.]
+[实现后如何知道此决策是正确的。]
 
-- [ ] [Measurable criterion 1]
-- [ ] [Measurable criterion 2]
-- [ ] [Performance criterion]
+- [ ] [可衡量标准 1]
+- [ ] [可衡量标准 2]
+- [ ] [性能标准]
 
-## GDD Requirements Addressed
+## 已解决的 GDD 需求
 
-<!-- This section is MANDATORY. Every ADR must trace back to at least one GDD
-     requirement, or explicitly state it is a foundational decision with no GDD
-     dependency. Traceability is audited by /architecture-review. -->
+<!-- 此章节是必需的。每个 ADR 必须追溯到至少一个 GDD 需求，或明确声明它是基础性决策且无 GDD 依赖。可追溯性由 /architecture-review 审计。 -->
 
-| GDD Document | System | Requirement | How This ADR Satisfies It |
+| GDD 文档 | 系统 | 需求 | 此 ADR 如何满足它 |
 |-------------|--------|-------------|--------------------------|
-| [e.g. `design/gdd/combat.md`] | [e.g. Combat] | [e.g. "Hitbox detection must resolve within 1 frame"] | [e.g. "Jolt physics collision queries run synchronously in _physics_process"] |
+| [例如 `design/gdd/combat.md`] | [例如 战斗] | [例如 "命中判定必须在 1 帧内完成"] | [例如 "Jolt 物理碰撞查询在 _physics_process 中同步运行"] |
 
-> If this is a foundational decision with no direct GDD dependency, write:
-> "Foundational — no GDD requirement. Enables: [list what GDD systems this
-> decision unlocks or constrains]"
+> 如果这是没有直接 GDD 依赖的基础性决策，写明：
+> "基础性——无 GDD 需求。解锁：[列出此决策解锁或约束的 GDD 系统]"
 
-## Related
+## 相关
 
-- [Link to related ADRs — note if supersedes, contradicts, or depends on]
-- [Link to relevant code files once implemented]
+- [链接到相关 ADR——注明是取代、矛盾还是依赖于]
+- [链接到实现后的相关代码文件]

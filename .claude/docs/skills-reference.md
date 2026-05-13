@@ -1,51 +1,51 @@
-# Available Skills (Slash Commands)
+# 可用 Skill（斜杠命令）
 
-21 slash commands organized by phase. Type `/` in Claude Code to access any of them.
+21 个斜杠命令，按阶段组织。在 Claude Code 中输入 `/` 即可访问。
 
-## Phase 1 — Concept
+## 阶段 1 — 概念
 
-| Command | Purpose |
+| 命令 | 用途 |
 |---------|---------|
-| `/start` | First-time onboarding — asks where you are, then guides you to the right workflow |
-| `/help` | Context-aware "what do I do next?" — reads current stage and surfaces the required next step |
-| `/brainstorm` | Guided ideation using professional studio methods (MDA, SDT, Bartle, verb-first) |
-| `/setup-engine` | Configure engine + version, detect knowledge gaps, populate version-aware reference docs |
-| `/project-stage-detect` | Full project audit — detect phase, identify gaps, recommend next steps |
-| `/art-bible` | Define visual style, color palette, and asset standards for your game |
+| `/start` | 首次引导——询问你处于哪个阶段，然后指引到正确的工作流 |
+| `/help` | 上下文感知的"我下一步该做什么？"——读取当前阶段并展示所需的下一步 |
+| `/brainstorm` | 使用专业工作室方法（MDA、SDT、Bartle、动词优先）进行引导式创意构思 |
+| `/setup-engine` | 配置引擎和版本，检测知识空白，填充版本感知的参考文档 |
+| `/project-stage-detect` | 完整项目审计——检测阶段、识别差距、推荐下一步 |
+| `/art-bible` | 为你的游戏定义视觉风格、色彩方案和资源标准 |
 
-## Phase 2 — Prototype
+## 阶段 2 — 原型
 
-| Command | Purpose |
+| 命令 | 用途 |
 |---------|---------|
-| `/prototype` | Rapid prototyping workflow — validate core mechanic with throwaway code |
-| `/quick-design` | Lightweight design spec for small changes — tuning, tweaks, minor additions |
-| `/gate-check` | Validate readiness to advance between phases |
+| `/prototype` | 快速原型工作流——用可抛弃代码验证核心机制 |
+| `/quick-design` | 轻量级设计规格——用于调优、微调和微小添加 |
+| `/gate-check` | 验证是否准备好推进到下一阶段 |
 
-## Phase 3 — Production
+## 阶段 3 — 生产
 
-| Command | Purpose |
+| 命令 | 用途 |
 |---------|---------|
-| `/design-system` | Guided, section-by-section GDD authoring for a single game system |
-| `/create-epics` | Break GDDs into implementation epics |
-| `/create-stories` | Break an epic into implementable story files |
-| `/sprint-plan` | Plan the current sprint — lightweight, single-file |
-| `/dev-story` | Read a story file and implement it — the core build loop |
-| `/code-review` | Architectural and quality code review |
-| `/story-done` | Verify story meets acceptance criteria |
-| `/bug-report` | Create a structured bug report |
+| `/design-system` | 引导式逐节为单个游戏系统编写 GDD |
+| `/create-epics` | 将 GDD 分解为实现 Epic |
+| `/create-stories` | 将 Epic 分解为可实现的 Story 文件 |
+| `/sprint-plan` | 规划当前迭代——轻量级，单文件 |
+| `/dev-story` | 读取 Story 文件并实现——核心构建循环 |
+| `/code-review` | 架构和质量代码审查 |
+| `/story-done` | 验证 Story 是否满足验收标准 |
+| `/bug-report` | 创建结构化的 Bug 报告 |
 
-## Phase 4 — Polish & Release
+## 阶段 4 — 打磨与发布
 
-| Command | Purpose |
+| 命令 | 用途 |
 |---------|---------|
-| `/qa-plan` | Generate QA test plan from GDDs and stories |
-| `/smoke-check` | Critical path verification — quick check that nothing is broken |
-| `/playtest-report` | Collect and analyze playtest feedback |
-| `/changelog` | Auto-generate changelog from git history |
+| `/qa-plan` | 从 GDD 和 Story 生成 QA 测试计划 |
+| `/smoke-check` | 关键路径验证——快速检查是否有问题 |
+| `/playtest-report` | 收集和分析试玩反馈 |
+| `/changelog` | 从 Git 历史自动生成更新日志 |
 
-## Usage Notes
+## 使用说明
 
-- **Phase 1-3**: QA skills are intentionally unavailable — defer testing until you have a playable demo
-- **Phase 4**: QA activates —  become available
-- `/gate-check` is your decision tool — use it at phase boundaries
-- `/prototype` is the most important Phase 2 skill — validate before you build
+- **阶段 1-3**：QA Skill 有意不可用——将测试推迟到拥有可玩演示之后
+- **阶段 4**：QA 激活——变为可用
+- `/gate-check` 是你的决策工具——在阶段边界使用它
+- `/prototype` 是阶段 2 最重要的 Skill——在构建之前进行验证

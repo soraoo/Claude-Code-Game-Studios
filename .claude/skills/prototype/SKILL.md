@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: "Rapid prototyping workflow. Skips normal standards to quickly validate a game concept or mechanic. Produces throwaway code and a structured prototype report."
+description: "快速原型工作流。跳过正常标准以快速验证游戏概念或机制。产生可抛弃代码和结构化的原型报告。"
 argument-hint: "[concept-description] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task
@@ -8,150 +8,149 @@ agent: gameplay-programmer
 isolation: worktree
 ---
 
-## Phase 1: Define the Question
+## 阶段 1：定义问题
 
-Resolve the review mode (once, store for all gate spawns this run):
-1. If `--review [full|lean|solo]` was passed → use that
-2. Else read `production/review-mode.txt` → use that value
-3. Else → default to `lean`
+解析审查模式（一次，存储供本次运行的所有关卡派生使用）：
+1. 如果传入了 `--review [full|lean|solo]` → 使用该值
+2. 否则读取 `production/review-mode.txt` → 使用该值
+3. 否则 → 默认为 `lean`
 
 
 
-Read the concept description from the argument. Identify the core question this prototype must answer. If the concept is vague, state the question explicitly before proceeding — a prototype without a clear question wastes time.
-
----
-
-## Phase 2: Load Project Context
-
-Read `CLAUDE.md` for project context and the current tech stack. Understand what engine, language, and frameworks are in use so the prototype is built with compatible tooling.
+从参数中读取概念描述。确定此原型必须回答的核心问题。如果概念模糊，在继续之前明确陈述问题——没有清晰问题的原型是浪费时间。
 
 ---
 
-## Phase 3: Plan the Prototype
+## 阶段 2：加载项目上下文
 
-Define in 3-5 bullet points what the minimum viable prototype looks like:
-
-- What is the core question?
-- What is the absolute minimum code needed to answer it?
-- What can be skipped (error handling, polish, architecture)?
-
-Present this plan to the user before building. Ask for confirmation if scope seems unclear.
+读取 `CLAUDE.md` 获取项目上下文和当前技术栈。了解正在使用的引擎、语言和框架，以便原型使用兼容的工具构建。
 
 ---
 
-## Phase 4: Implement
+## 阶段 3：规划原型
 
-Ask: "May I create the prototype directory at `prototypes/[concept-name]/` and begin implementation?"
+用 3-5 个要点定义最小可行原型看起来像什么：
 
-If yes, create the directory. Every file must begin with:
+- 核心问题是什么？
+- 回答它所需的最小代码是什么？
+- 什么可以跳过（错误处理、打磨、架构）？
+
+在构建之前向用户展示此计划。如果范围看起来不明确，请求确认。
+
+---
+
+## 阶段 4：实现
+
+询问："我可以在 `prototypes/[概念名称]/` 创建原型目录并开始实现吗？"
+
+如果同意，创建目录。每个文件必须以以下内容开头：
 
 ```
-// PROTOTYPE - NOT FOR PRODUCTION
-// Question: [Core question being tested]
-// Date: [Current date]
+// 原型 - 非生产代码
+// 问题：[正在测试的核心问题]
+// 日期：[当前日期]
 ```
 
-Standards are intentionally relaxed:
+标准有意放宽：
 
-- Hardcode values freely
-- Use placeholder assets
-- Skip error handling
-- Use the simplest approach that works
-- Copy code rather than importing from production
+- 自由地硬编码数值
+- 使用临时占位资源
+- 跳过错误处理
+- 使用能工作的最简单方法
+- 复制代码而非从生产代码导入
 
-Run the prototype. Observe behavior. Collect any measurable data (frame times, interaction counts, feel assessments).
+运行原型。观察行为。收集任何可衡量的数据（帧时间、交互计数、手感评估）。
 
 ---
 
-## Phase 5: Generate Prototype Report
+## 阶段 5：生成原型报告
 
-Draft the report:
+起草报告：
 
 ```markdown
-## Prototype Report: [Concept Name]
+## 原型报告：[概念名称]
 
-### Hypothesis
-[What we expected to be true -- the question we set out to answer]
+### 假设
+[我们预期为真的——我们出发要回答的问题]
 
-### Approach
-[What we built, how long it took, what shortcuts we took]
+### 方法
+[我们构建了什么、花了多长时间、我们做了哪些捷径]
 
-### Result
-[What actually happened -- specific observations, not opinions]
+### 结果
+[实际发生了什么——具体的观察，而非看法]
 
-### Metrics
-[Any measurable data collected during testing]
-- Frame time: [if relevant]
-- Feel assessment: [subjective but specific -- "response felt sluggish at
-  200ms delay" not "felt bad"]
-- Player action counts: [if relevant]
-- Iteration count: [how many attempts to get it working]
+### 指标
+[测试期间收集的任何可衡量的数据]
+- 帧时间：[如相关]
+- 手感评估：[主观但具体——"响应在 200ms 延迟时感觉迟钝"而非"感觉不好"]
+- 玩家操作计数：[如相关]
+- 迭代次数：[使其正常工作需要多少次尝试]
 
-### Recommendation: [PROCEED / PIVOT / KILL]
+### 推荐：[继续 / 转向 / 放弃]
 
-[One paragraph explaining the recommendation with evidence]
+[用证据解释推荐的一段话]
 
-### If Proceeding
-[What needs to change for a production-quality implementation]
-- Architecture requirements
-- Performance targets
-- Scope adjustments from the original design
-- Estimated production effort
+### 如果继续
+[对于生产质量的实现需要改变什么]
+- 架构要求
+- 性能目标
+- 与原设计相比的范围调整
+- 预估生产工作量
 
-### If Pivoting
-[What alternative direction the results suggest]
+### 如果转向
+[结果指出了什么替代方向]
 
-### If Killing
-[Why this concept does not work and what we should do instead]
+### 如果放弃
+[为什么这个概念不奏效以及我们应该做什么]
 
-### Lessons Learned
-[Discoveries that affect other systems or future work]
+### 经验教训
+[影响其他系统或未来工作的发现]
 ```
 
-Ask: "May I write this report to `prototypes/[concept-name]/REPORT.md`?"
+询问："我可以将此报告写入 `prototypes/[概念名称]/REPORT.md` 吗？"
 
-If yes, write the file.
-
----
-
-## Phase 6: Creative Director Review
-
-**Review mode check** — apply before spawning CD-PLAYTEST:
-- `solo` → skip. Note: "CD-PLAYTEST skipped — Solo mode." Proceed to Phase 7 summary with the gameplay-programmer's recommendation as the final verdict.
-- `lean` → skip (not a PHASE-GATE). Note: "CD-PLAYTEST skipped — Lean mode." Proceed to Phase 7 summary with the gameplay-programmer's recommendation as the final verdict.
-- `full` → spawn as normal.
-
-Spawn `creative-director` via Task using gate **CD-PLAYTEST** .
-
-Pass: the full REPORT.md content, the original design question, game pillars and core fantasy from `design/gdd/game-concept.md` (if it exists).
-
-The creative director evaluates the prototype result against the game's creative vision and pillars, then confirms, modifies, or overrides the PROCEED / PIVOT / KILL recommendation. Their verdict is final. Update the REPORT.md `Recommendation` section if the creative director's verdict differs from the gameplay-programmer's.
+如果同意，写入文件。
 
 ---
 
-## Phase 7: Summary and Next Steps
+## 阶段 6：创意总监审查
 
-Output a summary to the user: the core question, the result, the gameplay-programmer's initial recommendation, and the creative-director's final decision. Link to the full report at `prototypes/[concept-name]/REPORT.md`.
+**审查模式检查**——在派生 CD-PLAYTEST 之前应用：
+- `solo` → 跳过。注明："CD-PLAYTEST 已跳过——单人模式。"使用 gameplay-programmer 的推荐作为最终判定，进入阶段 7 摘要。
+- `lean` → 跳过（非 PHASE-GATE）。注明："CD-PLAYTEST 已跳过——精简模式。"使用 gameplay-programmer 的推荐作为最终判定，进入阶段 7 摘要。
+- `full` → 正常派生。
 
-If **PROCEED**: run `/design-system` to begin the production GDD for this mechanic, or ADR in docs/architecture/ to record key technical decisions before implementation.
+通过 Task 派生 `creative-director`，使用关卡 **CD-PLAYTEST**。
 
-If **PIVOT** or **KILL**: no further action needed — the prototype report is the deliverable.
+传递：完整的 REPORT.md 内容、原始设计问题、来自 `design/gdd/game-concept.md`（如果存在）的游戏支柱和核心幻想。
 
-Verdict: **COMPLETE** — prototype finished. Recommendation is PROCEED, PIVOT, or KILL based on findings above.
-
-### Important Constraints
-
-- Prototype code must NEVER import from production source files
-- Production code must NEVER import from prototype directories
-- If the recommendation is PROCEED, the production implementation must be written from scratch — prototype code is not refactored into production
-- Total prototype effort should be timeboxed to 1-3 days equivalent of work
-- If the prototype scope starts growing, stop and reassess whether the question can be simplified
+创意总监根据游戏的创意愿景和支柱评估原型结果，然后确认、修改或覆盖继续/转向/放弃推荐。他们的判定是最终的。如果创意总监的判定与 gameplay-programmer 的不同，更新 REPORT.md 的 `推荐` 章节。
 
 ---
 
-## Recommended Next Steps
+## 阶段 7：摘要和后续步骤
 
-- **If PROCEED**: Run `/design-system [mechanic]` to author the production GDD, or ADR in docs/architecture/ to record key technical decisions before implementation
-- **If PIVOT**: Run `/prototype [revised-concept]` to test the adjusted direction
-- **If KILL**: No further action required — the prototype report is the deliverable
-- Run `/playtest-report` to formally document any playtest sessions conducted during prototyping
+向用户输出摘要：核心问题、结果、gameplay-programmer 的初始推荐以及 creative-director 的最终决定。链接到完整报告 `prototypes/[概念名称]/REPORT.md`。
+
+如果**继续**：运行 `/design-system` 开始该机制的生产 GDD，或在 docs/architecture/ 中创建 ADR 以在实现前记录关键的技术决策。
+
+如果**转向**或**放弃**：无需进一步操作——原型报告即交付物。
+
+判定：**COMPLETE**——原型完成。根据上述发现，推荐为继续、转向或放弃。
+
+### 重要约束
+
+- 原型代码绝不能从生产源文件导入
+- 生产代码绝不能从原型目录导入
+- 如果推荐是继续，生产实现必须从头编写——原型代码不会被重构进生产
+- 总原型工作量应时间盒限制在 1-3 天等效工作量
+- 如果原型范围开始膨胀，停下来重新评估问题是否可以被简化
+
+---
+
+## 推荐的后续步骤
+
+- **如果继续**：运行 `/design-system [机制]` 编写生产 GDD，或在 docs/architecture/ 中创建 ADR 以在实现前记录关键的技术决策
+- **如果转向**：运行 `/prototype [修订后的概念]` 测试调整后的方向
+- **如果放弃**：无需进一步操作——原型报告即交付物
+- 运行 `/playtest-report` 正式记录在原型制作期间进行的任何试玩会话

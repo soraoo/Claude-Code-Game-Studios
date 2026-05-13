@@ -1,42 +1,41 @@
-# Agent Roster
+# Agent 名册
 
-13 agents covering the essential domains for indie game development.
-Each agent has a definition file in `.claude/agents/`.
+13 个 Agent，覆盖独立游戏开发的核心领域。每个 Agent 在 `.claude/agents/` 中有对应的定义文件。
 
-## Design & Direction
+## 设计与方向
 
-| Agent | Role | When to Use |
+| Agent | 角色 | 何时使用 |
 |-------|------|-------------|
-| `creative-director` | Vision & tone | Major creative decisions, game pillars, player experience |
-| `game-designer` | Mechanics & systems | Core loop design, progression, gameplay rules |
-| `art-director` | Visual identity | Art style, color palettes, asset specs, AI art prompts |
+| `creative-director` | 愿景与基调 | 重大创意决策、游戏支柱、玩家体验 |
+| `game-designer` | 机制与系统 | 核心循环设计、进度系统、玩法规则 |
+| `art-director` | 视觉标识 | 艺术风格、色彩方案、资源规格、AI 美术提示词 |
 
-## Programming
+## 编程
 
-| Agent | Role | When to Use |
+| Agent | 角色 | 何时使用 |
 |-------|------|-------------|
-| `lead-programmer` | Code architecture | System design, code review, API design, refactoring |
-| `gameplay-programmer` | Feature implementation | Game mechanics, player systems, interactive features |
-| `engine-programmer` | Engine systems | Core engine, rendering, physics, performance |
-| `ui-programmer` | UI implementation | Menus, HUD, screens, widgets, data binding |
-| `technical-artist` | Shaders & VFX | Shaders, visual effects, rendering optimization |
+| `lead-programmer` | 代码架构 | 系统设计、代码审查、API 设计、重构 |
+| `gameplay-programmer` | 功能实现 | 游戏机制、玩家系统、交互功能 |
+| `engine-programmer` | 引擎系统 | 核心引擎、渲染、物理、性能 |
+| `ui-programmer` | UI 实现 | 菜单、HUD、界面、控件、数据绑定 |
+| `technical-artist` | 着色器与 VFX | 着色器、视觉特效、渲染优化 |
 
-## Content & World
+## 内容与世界
 
-| Agent | Role | When to Use |
+| Agent | 角色 | 何时使用 |
 |-------|------|-------------|
-| `writer` | Text & dialogue | Dialogue, lore entries, item descriptions, flavor text |
-| `level-designer` | Level layout | Level layouts, encounter design, spatial flow, pacing |
+| `writer` | 文本与对话 | 对话、背景故事条目、物品描述、风味文本 |
+| `level-designer` | 关卡布局 | 关卡布局、遭遇战设计、空间流动、节奏 |
 
-## Engine
+## 引擎
 
-| Agent | Role | When to Use |
+| Agent | 角色 | 何时使用 |
 |-------|------|-------------|
-| `godot-specialist` | Godot 4 expert | GDScript patterns, node/scene architecture, Godot best practices |
+| `godot-specialist` | Godot 4 专家 | GDScript 模式、节点/场景架构、Godot 最佳实践 |
 
-## Quality (Phase 4+)
+## 质量（阶段 4+）
 
-| Agent | Role | When to Use |
+| Agent | 角色 | 何时使用 |
 |-------|------|-------------|
-| `technical-director` | Technical decisions | Architecture decisions, tech stack, performance strategy |
-| `qa-tester` | Test execution | Test cases, bug reports, test checklists — activate in Phase 4 |
+| `technical-director` | 技术决策 | 架构决策、技术栈、性能策略 |
+| `qa-tester` | 测试执行 | 测试用例、Bug 报告、测试清单——在阶段 4 激活 |

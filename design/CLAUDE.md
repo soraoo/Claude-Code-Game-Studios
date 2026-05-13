@@ -1,25 +1,24 @@
-# Design Directory
+# 设计目录
 
-When authoring or editing files in this directory, follow these standards.
+在此目录中编写或编辑文件时，请遵循以下标准。
 
-## GDD Files (`design/gdd/`)
+## GDD 文件 (`design/gdd/`)
 
-Every GDD should include these **4 core sections**:
-1. **Overview** — what the system does, one paragraph
-2. **Player Experience** — how it feels to interact with this system
-3. **Rules & Formulas** — mechanics and any math, clearly defined
-4. **Acceptance Criteria** — testable success conditions
+每个 GDD 应包含以下 **4 个核心章节**：
+1. **概述** — 系统做什么，一段话即可
+2. **玩家体验** — 与此系统交互的感受
+3. **规则与公式** — 机制和数学，清晰定义
+4. **验收标准** — 可测试的成功条件
 
-Additional sections (add as needed):
-- **Dependencies** — other systems this depends on
-- **Tuning Knobs** — configurable values
-- **Edge Cases** — unusual situations handled
+其他章节（根据需要添加）：
+- **依赖关系** — 此系统依赖的其他系统
+- **调优旋钮** — 可配置的参数
+- **边缘情况** — 已处理的异常情况
 
-**File naming:** `[system-slug].md` (e.g. `movement-system.md`, `combat-system.md`)
+**文件命名：** `[系统简称].md`（如 `movement-system.md`、`combat-system.md`）
 
-**Systems index:** `design/gdd/systems-index.md` — update when adding a new GDD.
+**系统索引：** `design/gdd/systems-index.md` — 添加新 GDD 时更新。
 
-## Quick Specs (`design/quick-specs/`)
+## 快速规格 (`design/quick-specs/`)
 
-Lightweight specs for tuning changes, minor mechanics, or balance adjustments.
-Use `/quick-design` to author.
+适用于调优更改、小型机制或平衡调整的轻量级规格。使用 `/quick-design` 编写。

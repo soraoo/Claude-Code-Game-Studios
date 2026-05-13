@@ -1,62 +1,62 @@
-# What's New in [Version]
+# [版本号] 更新内容
 
-**Release Date**: [Date]
-
----
-
-## New Features
-
-- **[Feature Name]**: [Player-friendly description of what they can now do. Focus on the experience, not the implementation. 1-2 sentences.]
-
-- **[Feature Name]**: [Description]
+**发布日期**：[日期]
 
 ---
 
-## Improvements
+## 新功能
 
-- **[Area Improved]**: [How this makes the game better for the player. Be specific.]
+- **[功能名称]**：[面向玩家描述他们现在可以做什么的说明。聚焦体验而非实现。1-2 句话。]
 
-- **[Area Improved]**: [Description]
-
----
-
-## Balance Changes
-
-- **[What Changed]**: [Old value] -> [New value]. [Brief design reasoning in player terms. Example: "Healing potions now restore 50 HP (up from 30) -- late-game encounters needed more recovery options."]
-
-- **[What Changed]**: [Description]
+- **[功能名称]**：[描述]
 
 ---
 
-## Bug Fixes
+## 改进
 
-- Fixed an issue where [describe the player-visible symptom, not the code fix]
-- Fixed [another player-visible symptom]
-- Fixed [symptom]
+- **[改进领域]**：[这对玩家来说如何让游戏变得更好。要具体。]
 
----
-
-## Known Issues
-
-- [Issue description in player terms]. [Workaround if one exists.] We're working on a fix.
+- **[改进领域]**：[描述]
 
 ---
 
-## Technical Notes (Internal Only -- Remove Before Publishing)
+## 平衡性调整
 
-### Commits Covered
-- Range: `[first-hash]..[last-hash]`
-- Total commits: [N]
+- **[调整内容]**：[旧值] -> [新值]。[用玩家能理解的语言简要说明设计理由。示例："治疗药水现在恢复 50 HP（此前为 30）——后期遭遇战需要更多恢复手段。"]
 
-### Internal Changes
-- [Refactoring, infrastructure, or tooling changes not visible to players]
-
-### Deferred Items
-- [Features or fixes originally planned for this release but moved to next]
-  - Reason: [why deferred]
-  - New target: [version or sprint]
+- **[调整内容]**：[描述]
 
 ---
 
-Thank you for playing! Your feedback helps us improve the game.
-Report issues at [support link].
+## Bug 修复
+
+- 修复了 [描述玩家可见的症状，而非代码修复] 的问题
+- 修复了 [另一个玩家可见的症状]
+- 修复了 [症状]
+
+---
+
+## 已知问题
+
+- [用玩家语言描述问题]。[如果有变通方法的话说明。] 我们正在修复中。
+
+---
+
+## 技术说明（仅内部使用——发布前删除）
+
+### 覆盖的提交
+- 范围：`[起始哈希]..[结束哈希]`
+- 总提交数：[N]
+
+### 内部更改
+- [对玩家不可见的重构、基础设施或工具变更]
+
+### 推迟项
+- [原本计划此版本发布但推迟到下个版本的功能或修复]
+  - 原因：[为何推迟]
+  - 新目标：[版本号或迭代]
+
+---
+
+感谢你的游玩！你的反馈帮助我们改进游戏。
+问题反馈至 [支持链接]。
